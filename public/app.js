@@ -240,6 +240,8 @@ async function enviarFormulario(e) {
     submitBtn.textContent = '⏳ Procesando...';
     
     try {
+        console.log('Enviando datos:', { nombre, email, respuestasCount: respuestas.length });
+        
         const response = await fetch('/api/evaluar', {
             method: 'POST',
             headers: {
@@ -252,7 +254,19 @@ async function enviarFormulario(e) {
             })
         });
         
-        const data = await response.json();
+        console.log('Response status:', response.status);
+        console.log('Response ok:', response.ok);
+        
+        // Intentar parsear la respuesta
+        let data;
+        try {
+            const text = await response.text();
+            console.log('Response text:', text);
+            data = text ? JSON.parse(text) : {};
+        } catch (parseError) {
+            console.error('Error parsing response:', parseError);
+            throw new Error('Error al procesar la respuesta del servidor');
+        }
         
         if (response.ok) {
             mostrarMensaje(
@@ -266,8 +280,15 @@ async function enviarFormulario(e) {
             mostrarMensaje('❌ ' + (data.error || 'Error al procesar tu evaluación'), 'error');
         }
     } catch (error) {
-        console.error('Error:', error);
-        mostrarMensaje('❌ Error de conexión. Por favor, intenta nuevamente.', 'error');
+        console.error('Error completo:', error);
+        console.error('Error message:', error.message);
+        console.error('Error stack:', error.stack);
+        
+        let mensajeError = '❌ Error de conexión. Por favor, intenta nuevamente.';
+        if (error.message) {
+            mensajeError = '❌ ' + error.message;
+        }
+        mostrarMensaje(mensajeError, 'error');
     } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Recibir Mi Receta De Carisma';

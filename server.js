@@ -10,7 +10,18 @@ const app = express();
 const PORT = process.env.PORT || process.env.AMPLIFY_PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Logging para debug
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+  next();
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -275,18 +286,23 @@ async function enviarEmailSES(destinatario, asunto, html) {
 // Ruta para procesar el formulario
 app.post('/api/evaluar', async (req, res) => {
   try {
+    console.log('POST /api/evaluar recibido');
+    console.log('Body:', JSON.stringify(req.body, null, 2));
+    
     const { nombre, email, respuestas } = req.body;
     
     // Validaciones
     if (!nombre || !email) {
+      console.log('Error: Nombre o email faltante');
       return res.status(400).json({ 
         error: 'Nombre y email son requeridos' 
       });
     }
     
     if (!respuestas || respuestas.length !== 36) {
+      console.log('Error: Respuestas incompletas. Recibidas:', respuestas ? respuestas.length : 0);
       return res.status(400).json({ 
-        error: 'Debes responder las 36 preguntas' 
+        error: `Debes responder las 36 preguntas. Respondiste ${respuestas ? respuestas.length : 0}` 
       });
     }
     
