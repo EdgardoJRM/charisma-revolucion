@@ -1,0 +1,7 @@
+# Prevenir que dashboard.html sea redirigido a index.html
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+</IfModule>
+

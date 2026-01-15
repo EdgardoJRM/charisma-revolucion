@@ -411,6 +411,33 @@
     </div>
     
     <script>
+        // Protección del dashboard
+        const DASHBOARD_PASSWORD = 'charisma2024'; // Cambia esta contraseña
+        const PASSWORD_KEY = 'dashboard_authenticated';
+        
+        // Verificar autenticación
+        function verificarAutenticacion() {
+            const authenticated = sessionStorage.getItem(PASSWORD_KEY) === 'true';
+            if (!authenticated) {
+                const password = prompt('🔒 Acceso Restringido\n\nIngresa la contraseña para acceder al dashboard:');
+                if (password === DASHBOARD_PASSWORD) {
+                    sessionStorage.setItem(PASSWORD_KEY, 'true');
+                    return true;
+                } else {
+                    alert('❌ Contraseña incorrecta. Acceso denegado.');
+                    window.location.href = '/';
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        // Verificar al cargar
+        if (!verificarAutenticacion()) {
+            // Redirigir si no está autenticado
+            document.body.innerHTML = '<div style="text-align:center;padding:50px;"><h1>Acceso Denegado</h1></div>';
+        }
+        
         const API_BASE = 'https://2w5dtqjsbj.execute-api.us-east-1.amazonaws.com/prod';
         let todosLosClientes = [];
         

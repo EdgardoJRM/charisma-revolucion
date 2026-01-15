@@ -602,13 +602,8 @@ async function enviarFormulario(e) {
         }
         
         if (response.ok) {
-            mostrarMensaje(
-                '✅ ' + data.message + ' Revisa tu bandeja de entrada (y spam) para ver tu fórmula de carisma.',
-                'success'
-            );
-            
-            // Limpiar formulario
-            document.getElementById('form-email').reset();
+            // Redirigir a página de confirmación
+            window.location.href = '/confirmacion.html';
         } else {
             mostrarMensaje('❌ ' + (data.error || 'Error al procesar tu evaluación'), 'error');
         }
