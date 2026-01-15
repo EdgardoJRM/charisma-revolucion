@@ -34,6 +34,9 @@ if (!process.env.AWS_EXECUTION_ENV) {
   app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
   });
+  app.get('/dashboard.html', (req, res) => {
+    res.sendFile(__dirname + '/public/dashboard.html');
+  });
 }
 
 // Configuración de AWS SES
