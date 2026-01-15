@@ -1,0 +1,54 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradientMain" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff6b6b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradientSecondary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo circular con gradiente -->
+  <circle cx="100" cy="100" r="95" fill="url(#gradientMain)" stroke="#00100b" stroke-width="3"/>
+  
+  <!-- Letra C -->
+  <path d="M 50 100 Q 50 60 80 50 Q 110 45 130 65 Q 140 75 140 85" 
+        fill="none" 
+        stroke="#ffffff" 
+        stroke-width="12" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+  <path d="M 50 100 Q 50 140 80 150 Q 110 155 130 135 Q 140 125 140 115" 
+        fill="none" 
+        stroke="#ffffff" 
+        stroke-width="12" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+  
+  <!-- Letra R -->
+  <path d="M 150 50 L 150 150" 
+        fill="none" 
+        stroke="#ffffff" 
+        stroke-width="12" 
+        stroke-linecap="round"/>
+  <path d="M 150 50 Q 150 50 170 50 Q 185 50 185 70 Q 185 85 175 90" 
+        fill="none" 
+        stroke="#ffffff" 
+        stroke-width="12" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+  <path d="M 150 100 L 185 100 Q 190 100 190 115 Q 190 130 185 135 Q 180 140 175 140 L 150 140" 
+        fill="none" 
+        stroke="#ffffff" 
+        stroke-width="12" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+  <path d="M 175 100 L 190 150" 
+        fill="none" 
+        stroke="#ffffff" 
+        stroke-width="12" 
+        stroke-linecap="round"/>
+</svg>
+

@@ -163,6 +163,33 @@ body {
     overflow: hidden;
 }
 
+.logo-intro {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 30px;
+    animation: fadeInScale 0.8s ease;
+    filter: drop-shadow(0 4px 15px rgba(139, 92, 246, 0.3));
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-intro {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 20px;
+    }
+}
+
 .intro-titulo {
     font-family: 'Lora', serif;
     font-weight: 700;
