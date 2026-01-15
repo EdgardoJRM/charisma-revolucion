@@ -11,7 +11,11 @@ const PORT = process.env.PORT || process.env.AMPLIFY_PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+
+// Servir archivos estáticos solo si no estamos en Amplify (Amplify los sirve desde CDN)
+if (!process.env.AWS_EXECUTION_ENV) {
+  app.use(express.static('public'));
+}
 
 // Configuración de AWS SES
 const sesClient = new SESClient({
