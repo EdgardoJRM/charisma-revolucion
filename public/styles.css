@@ -164,10 +164,11 @@ body {
 
 .paso.activo {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     overflow-y: auto;
     overflow-x: hidden;
+    padding-top: 20px;
 }
 
 /* PASO 0: INTRO */
@@ -181,7 +182,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    min-height: 100%;
     overflow: hidden;
 }
 
@@ -271,11 +272,12 @@ body {
     width: 100%;
     padding: 20px 40px;
     margin: 0 auto;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: visible;
+    padding-top: 30px;
 }
 
 /* Barra de progreso */
@@ -462,12 +464,13 @@ body {
     padding: 40px 30px;
     margin: 0 auto;
     text-align: center;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     overflow-y: auto;
     overflow-x: hidden;
+    padding-top: 30px;
 }
 
 .email-titulo {
@@ -573,11 +576,21 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
     .paso {
-        padding: 15px;
+        padding: 10px;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .paso.activo {
+        padding-top: 10px;
+        align-items: flex-start;
     }
 
     .intro-container {
         padding: 30px 20px;
+        min-height: auto;
+        justify-content: flex-start;
+        padding-top: 40px;
     }
 
     .intro-titulo {
@@ -599,7 +612,10 @@ body {
     }
 
     .pregunta-wrapper {
-        padding: 20px 15px;
+        padding: 15px;
+        padding-top: 20px;
+        min-height: auto;
+        justify-content: flex-start;
     }
 
     .progress-container {
@@ -649,7 +665,10 @@ body {
     }
 
     .email-container {
-        padding: 30px 20px;
+        padding: 20px 15px;
+        padding-top: 30px;
+        min-height: auto;
+        justify-content: flex-start;
     }
 
     .email-titulo {
