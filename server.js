@@ -9,23 +9,29 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || process.env.AMPLIFY_PORT || 3000;
 
-// Middleware
+// Middleware básico (sin bodyParser todavía)
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-// Servir archivos estáticos ANTES de cualquier otra cosa
-// Rutas específicas para archivos estáticos
+// Servir archivos estáticos PRIMERO, antes de bodyParser
+// Rutas específicas para archivos estáticos críticos
 app.get('/app.js', (req, res) => {
   const filePath = path.join(__dirname, 'public', 'app.js');
-  res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
-  res.sendFile(filePath);
+  if (fs.existsSync(filePath)) {
+    res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+    res.sendFile(filePath);
+  } else {
+    res.status(404).send('File not found');
+  }
 });
 
 app.get('/styles.css', (req, res) => {
   const filePath = path.join(__dirname, 'public', 'styles.css');
-  res.setHeader('Content-Type', 'text/css; charset=utf-8');
-  res.sendFile(filePath);
+  if (fs.existsSync(filePath)) {
+    res.setHeader('Content-Type', 'text/css; charset=utf-8');
+    res.sendFile(filePath);
+  } else {
+    res.status(404).send('File not found');
+  }
 });
 
 // Servir otros archivos estáticos
@@ -38,6 +44,10 @@ app.use(express.static('public', {
     }
   }
 }));
+
+// BodyParser solo para rutas de API (después de archivos estáticos)
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Ruta principal - servir la página
 app.get('/', (req, res) => {
