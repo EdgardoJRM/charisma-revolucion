@@ -1,71 +1,373 @@
 // API base (backend separado en API Gateway)
 const API_BASE = 'https://2w5dtqjsbj.execute-api.us-east-1.amazonaws.com/prod';
 
-// Preguntas del examen (sin mencionar "carisma")
+// Preguntas del examen (sin mencionar estilos directamente)
 const preguntas = [
-    // NIVEL 1 - Energía (12 preguntas)
-    { nivel: 1, texto: "Cuando entro a una fiesta, prefiero..." },
-    { nivel: 1, texto: "Mi forma de captar atención es..." },
-    { nivel: 1, texto: "En una conversación, me gusta..." },
-    { nivel: 1, texto: "Cuando quiero entretener, yo..." },
-    { nivel: 1, texto: "Mi estilo de presentación es..." },
-    { nivel: 1, texto: "Para hacer reír a la gente, yo..." },
-    { nivel: 1, texto: "Cuando hablo en público, prefiero..." },
-    { nivel: 1, texto: "Mi energía se manifiesta cuando..." },
-    { nivel: 1, texto: "Para conectar con otros, yo..." },
-    { nivel: 1, texto: "Mi presencia se caracteriza por..." },
-    { nivel: 1, texto: "Cuando quiero ser memorable, yo..." },
-    { nivel: 1, texto: "Mi forma de expresarme es..." },
-    
-    // NIVEL 2 - Confianza (12 preguntas)
-    { nivel: 2, texto: "Cuando alguien está triste, yo..." },
-    { nivel: 2, texto: "Para generar confianza, yo..." },
-    { nivel: 2, texto: "Cuando alguien tiene un problema, yo..." },
-    { nivel: 2, texto: "Mi forma de escuchar es..." },
-    { nivel: 2, texto: "Para crear conexión emocional, yo..." },
-    { nivel: 2, texto: "Cuando alguien necesita apoyo, yo..." },
-    { nivel: 2, texto: "Mi manera de mostrar empatía es..." },
-    { nivel: 2, texto: "Para hacer sentir cómodos a otros, yo..." },
-    { nivel: 2, texto: "Cuando hay conflicto, yo..." },
-    { nivel: 2, texto: "Mi forma de entender a los demás es..." },
-    { nivel: 2, texto: "Para generar seguridad en otros, yo..." },
-    { nivel: 2, texto: "Mi estilo de compasión se muestra cuando..." },
-    
-    // NIVEL 3 - Acción (12 preguntas)
-    { nivel: 3, texto: "Cuando necesito tomar una decisión, yo..." },
-    { nivel: 3, texto: "Mi forma de liderar es..." },
-    { nivel: 3, texto: "Para inspirar acción, yo..." },
-    { nivel: 3, texto: "Cuando hay que resolver algo, yo..." },
-    { nivel: 3, texto: "Mi estilo de autoridad se manifiesta..." },
-    { nivel: 3, texto: "Para guiar a otros, yo..." },
-    { nivel: 3, texto: "Cuando necesito influir, yo..." },
-    { nivel: 3, texto: "Mi forma de ejercer poder es..." },
-    { nivel: 3, texto: "Para lograr objetivos, yo..." },
-    { nivel: 3, texto: "Cuando necesito dirección, yo..." },
-    { nivel: 3, texto: "Mi manera de tomar control es..." },
-    { nivel: 3, texto: "Para generar cambio, yo..." }
-];
+    // NIVEL 1 - Carisma Energético (12 preguntas)
+    {
+        nivel: 1,
+        texto: "Voz y ritmo: ¿Cómo hablas cuando algo te apasiona?",
+        opciones: [
+            { valor: 'A', descripcion: 'Pausado, deliberado y con autoridad técnica.' },
+            { valor: 'B', descripcion: 'Rápido, con volumen creciente y mucha emoción.' },
+            { valor: 'C', descripcion: 'Suave, optimista y juguetón.' },
+            { valor: 'D', descripcion: 'Directo, fuerte y sin rodeos.' },
+            { valor: 'E', descripcion: 'Variado, con pausas dramáticas y entonación teatral.' },
+            { valor: 'F', descripcion: 'Ágil, ingenioso y buscando la complicidad del otro.' }
+        ]
+    },
+    {
+        nivel: 1,
+        texto: "En una videollamada: Lo que más destaca de ti es...",
+        opciones: [
+            { valor: 'A', descripcion: 'Tu fondo impecable y la claridad de tus datos.' },
+            { valor: 'B', descripcion: 'Tu entusiasmo que traspasa la pantalla.' },
+            { valor: 'C', descripcion: 'Tu sonrisa constante y buena vibra.' },
+            { valor: 'D', descripcion: 'Tu presencia imponente que domina el encuadre.' },
+            { valor: 'E', descripcion: 'Tu expresividad facial y movimientos de manos.' },
+            { valor: 'F', descripcion: 'Tus comentarios rápidos y bromas oportunas.' }
+        ]
+    },
+    {
+        nivel: 1,
+        texto: "Primer contacto: ¿Qué impresión sueles dejar al conocer a alguien?",
+        opciones: [
+            { valor: 'A', descripcion: '"Es una persona muy profesional y capaz".' },
+            { valor: 'B', descripcion: '"¡Qué energía tan inspiradora tiene!".' },
+            { valor: 'C', descripcion: '"Es alguien sumamente agradable y ligero".' },
+            { valor: 'D', descripcion: '"Es una persona poderosa que sabe lo que quiere".' },
+            { valor: 'E', descripcion: '"Es fascinante, imposible de ignorar".' },
+            { valor: 'F', descripcion: '"Es muy carismático y divertido".' }
+        ]
+    },
+    {
+        nivel: 1,
+        texto: "Narrativa: Al contar una anécdota, tu objetivo es...",
+        opciones: [
+            { valor: 'A', descripcion: 'Explicar los hechos con precisión quirúrgica.' },
+            { valor: 'B', descripcion: 'Hacer que los demás sientan la misma emoción que tú.' },
+            { valor: 'C', descripcion: 'Dibujar una sonrisa en los rostros de los demás.' },
+            { valor: 'D', descripcion: 'Demostrar un punto de victoria o aprendizaje fuerte.' },
+            { valor: 'E', descripcion: 'Transportar a la gente a la escena como en una película.' },
+            { valor: 'F', descripcion: 'Hacer que la gente se ría o se mantenga intrigada.' }
+        ]
+    },
+    {
+        nivel: 1,
+        texto: "Lenguaje Corporal: Tus gestos suelen ser...",
+        opciones: [
+            { valor: 'A', descripcion: 'Mínimos y controlados.' },
+            { valor: 'B', descripcion: 'Amplios y expansivos.' },
+            { valor: 'C', descripcion: 'Suaves y acogedores.' },
+            { valor: 'D', descripcion: 'Firmes y de \"toma de espacio\".' },
+            { valor: 'E', descripcion: 'Exagerados y descriptivos.' },
+            { valor: 'F', descripcion: 'Dinámicos y sociales.' }
+        ]
+    },
+    {
+        nivel: 1,
+        texto: "Manejo de silencios: Si hay un silencio incómodo en un grupo...",
+        opciones: [
+            { valor: 'A', descripcion: 'No te molesta, esperas a tener algo valioso que decir.' },
+            { valor: 'B', descripcion: 'Lo rompes con una frase motivadora.' },
+            { valor: 'C', descripcion: 'Lo suavizas con una sonrisa o comentario amable.' },
+            { valor: 'D', descripcion: 'Lo usas para observar y mantener tu estatus.' },
+            { valor: 'E', descripcion: 'Lo aprovechas para crear tensión dramática.' },
+            { valor: 'F', descripcion: 'Lanzas un chiste o comentario ingenioso.' }
+        ]
+    },
+    {
+        nivel: 1,
+        texto: "Vestimenta: Tu estilo proyecta...",
+        opciones: [
+            { valor: 'A', descripcion: 'Perfeccionismo y estatus.' },
+            { valor: 'B', descripcion: 'Energía y modernidad.' },
+            { valor: 'C', descripcion: 'Frescura y comodidad.' },
+            { valor: 'D', descripcion: 'Poder y autoridad.' },
+            { valor: 'E', descripcion: 'Algo único, llamativo o artístico.' },
+            { valor: 'F', descripcion: 'Tendencia y accesibilidad.' }
+        ]
+    },
+    {
+        nivel: 1,
+        texto: "Ante un reto: ¿Cómo reaccionas públicamente?",
+        opciones: [
+            { valor: 'A', descripcion: 'Analizas la situación con calma.' },
+            { valor: 'B', descripcion: 'Te emocionas por la oportunidad de ganar.' },
+            { valor: 'C', descripcion: 'Mantienes el optimismo grupal.' },
+            { valor: 'D', descripcion: 'Te pones al frente con determinación.' },
+            { valor: 'E', descripcion: 'Expresas la magnitud del desafío con pasión.' },
+            { valor: 'F', descripcion: 'Buscas el lado irónico o divertido del problema.' }
+        ]
+    },
+    {
+        nivel: 1,
+        texto: "Social media: Tu contenido favorito para publicar es...",
+        opciones: [
+            { valor: 'A', descripcion: 'Infografías, datos o logros profesionales.' },
+            { valor: 'B', descripcion: 'Videos hablando a cámara con mucha energía.' },
+            { valor: 'C', descripcion: 'Fotos estéticas, alegres y con mensajes positivos.' },
+            { valor: 'D', descripcion: 'Declaraciones fuertes y visiones de liderazgo.' },
+            { valor: 'E', descripcion: 'Historias muy producidas o con mucho storytelling visual.' },
+            { valor: 'F', descripcion: 'Memes, encuestas o interacción constante.' }
+        ]
+    },
+    {
+        nivel: 1,
+        texto: "Feedback: Cuando alguien te felicita, prefieres que te digan:",
+        opciones: [
+            { valor: 'A', descripcion: '"Eres un experto en lo que haces".' },
+            { valor: 'B', descripcion: '"Tu energía me cambió el día".' },
+            { valor: 'C', descripcion: '"Eres una persona luz, da gusto estar contigo".' },
+            { valor: 'D', descripcion: '"Tu seguridad me inspira confianza".' },
+            { valor: 'E', descripcion: '"No puedo dejar de escucharte/mirarte".' },
+            { valor: 'F', descripcion: '"Eres la persona más interesante de la sala".' }
+        ]
+    },
+    {
+        nivel: 1,
+        texto: "Energía ambiental: En una fiesta, tú eres quien...",
+        opciones: [
+            { valor: 'A', descripcion: 'Está en una esquina hablando profundamente con un experto.' },
+            { valor: 'B', descripcion: 'Está en el centro motivando a todos a bailar o participar.' },
+            { valor: 'C', descripcion: 'Está asegurándose de que todos estén felices y cómodos.' },
+            { valor: 'D', descripcion: 'Está hablando con los anfitriones o personas clave.' },
+            { valor: 'E', descripcion: 'Se lleva todas las miradas por su forma de contar historias.' },
+            { valor: 'F', descripcion: 'Está saltando de grupo en grupo haciendo reír a todos.' }
+        ]
+    },
+    {
+        nivel: 1,
+        texto: "Uso de manos: Al hablar...",
+        opciones: [
+            { valor: 'A', descripcion: 'Las mantienes juntas o sobre la mesa.' },
+            { valor: 'B', descripcion: 'Las mueves hacia afuera, como lanzando energía.' },
+            { valor: 'C', descripcion: 'Las usas para gestos de apertura y calidez.' },
+            { valor: 'D', descripcion: 'Haces gestos de mando (señalar sutilmente, palmas hacia abajo).' },
+            { valor: 'E', descripcion: 'Dibujas en el aire lo que estás diciendo.' },
+            { valor: 'F', descripcion: 'Las usas para enfatizar tus remates humorísticos.' }
+        ]
+    },
 
-// Opciones por nivel (solo descripciones, sin nombres de estilos)
-const opcionesNivel1 = [
-    { valor: 'A', descripcion: 'Crear una impresión poderosa y memorable' },
-    { valor: 'B', descripcion: 'Generar entusiasmo y energía contagiosa' },
-    { valor: 'C', descripcion: 'Asombrar con presencia y acciones sorprendentes' },
-    { valor: 'D', descripcion: 'Usar voz y presencia fuerte que resuena' },
-    { valor: 'E', descripcion: 'Manifestar a través de acción directa' },
-    { valor: 'F', descripcion: 'Atraer y seducir de manera sutil y natural' }
-];
+    // NIVEL 2 - Carisma de Compasión (12 preguntas)
+    {
+        nivel: 2,
+        texto: "Amigo en crisis: ¿Qué es lo primero que haces?",
+        opciones: [
+            { valor: 'A', descripcion: 'Escuchas en silencio, ofreciendo una presencia estable.' },
+            { valor: 'B', descripcion: 'Ofreces soluciones prácticas de inmediato.' },
+            { valor: 'C', descripcion: 'Le dices \"te entiendo, yo también me he sentido así\".' }
+        ]
+    },
+    {
+        nivel: 2,
+        texto: "Contacto visual: Tu mirada busca...",
+        opciones: [
+            { valor: 'A', descripcion: 'Transmitir paz y calma.' },
+            { valor: 'B', descripcion: 'Analizar cómo puedes ayudar.' },
+            { valor: 'C', descripcion: 'Conectar con el sentimiento del otro.' }
+        ]
+    },
+    {
+        nivel: 2,
+        texto: "Vulnerabilidad: Para ti, mostrar debilidad es...",
+        opciones: [
+            { valor: 'A', descripcion: 'Algo que haces solo con quien ha ganado tu confianza total.' },
+            { valor: 'B', descripcion: 'Una oportunidad para aprender y mejorar.' },
+            { valor: 'C', descripcion: 'Una herramienta para que los demás se sientan menos solos.' }
+        ]
+    },
+    {
+        nivel: 2,
+        texto: "Escucha activa: Mientras el otro habla, tú...",
+        opciones: [
+            { valor: 'A', descripcion: 'Asientes lentamente y mantienes el espacio.' },
+            { valor: 'B', descripcion: 'Estás pensando en el siguiente paso o solución.' },
+            { valor: 'C', descripcion: 'Reflejas sus expresiones faciales (neuronas espejo).' }
+        ]
+    },
+    {
+        nivel: 2,
+        texto: "Ambiente laboral: Prefieres ser visto como el colega que...",
+        opciones: [
+            { valor: 'A', descripcion: 'Nunca pierde los nervios.' },
+            { valor: 'B', descripcion: 'Siempre tiene la respuesta.' },
+            { valor: 'C', descripcion: 'Siempre sabe cómo te sientes.' }
+        ]
+    },
+    {
+        nivel: 2,
+        texto: "Conflictos: Para resolver una pelea...",
+        opciones: [
+            { valor: 'A', descripcion: 'Actúas como un pilar neutro.' },
+            { valor: 'B', descripcion: 'Actúas como un mediador táctico.' },
+            { valor: 'C', descripcion: 'Actúas como un puente emocional.' }
+        ]
+    },
+    {
+        nivel: 2,
+        texto: "Validación: Tu frase típica de apoyo es...",
+        opciones: [
+            { valor: 'A', descripcion: '"Aquí estoy para lo que necesites".' },
+            { valor: 'B', descripcion: '"Hagamos un plan para arreglarlo".' },
+            { valor: 'C', descripcion: '"Es totalmente normal que te sientas así".' }
+        ]
+    },
+    {
+        nivel: 2,
+        texto: "Reacción al error ajeno: Si alguien se equivoca delante de ti...",
+        opciones: [
+            { valor: 'A', descripcion: 'No haces drama, solo esperas a que se recupere.' },
+            { valor: 'B', descripcion: 'Le indicas discretamente cómo corregirlo.' },
+            { valor: 'C', descripcion: 'Le das una sonrisa reconfortante para que no se sienta mal.' }
+        ]
+    },
+    {
+        nivel: 2,
+        texto: "Presencia: En una conversación 1 a 1, el otro siente...",
+        opciones: [
+            { valor: 'A', descripcion: 'Que el tiempo se detiene (estabilidad).' },
+            { valor: 'B', descripcion: 'Que está avanzando (progreso).' },
+            { valor: 'C', descripcion: 'Que es visto y amado (validación).' }
+        ]
+    },
+    {
+        nivel: 2,
+        texto: "Límites: Cuando estás cansado emocionalmente...",
+        opciones: [
+            { valor: 'A', descripcion: 'Te retiras en silencio a tu \"cueva\".' },
+            { valor: 'B', descripcion: 'Buscas algo productivo que hacer para distraerte.' },
+            { valor: 'C', descripcion: 'Tratas de seguir complaciendo hasta que no puedes más.' }
+        ]
+    },
+    {
+        nivel: 2,
+        texto: "Cumplidos: Prefieres dar halagos sobre...",
+        opciones: [
+            { valor: 'A', descripcion: 'El carácter y la consistencia de la persona.' },
+            { valor: 'B', descripcion: 'Los logros y la inteligencia.' },
+            { valor: 'C', descripcion: 'La esencia y el sentir de la persona.' }
+        ]
+    },
+    {
+        nivel: 2,
+        texto: "Confianza: La gente confía en ti porque...",
+        opciones: [
+            { valor: 'A', descripcion: 'Eres predecible y sólido.' },
+            { valor: 'B', descripcion: 'Eres eficiente y resolutivo.' },
+            { valor: 'C', descripcion: 'Eres empático y humano.' }
+        ]
+    },
 
-const opcionesNivel2 = [
-    { valor: 'A', descripcion: 'Proporcionar estabilidad y confianza' },
-    { valor: 'B', descripcion: 'Identificar y corregir problemas, guiar soluciones' },
-    { valor: 'C', descripcion: 'Reflejar emociones y necesidades, crear conexión empática' }
-];
-
-const opcionesNivel3 = [
-    { valor: 'A', descripcion: 'Iluminar con claridad y visión, inspirar posibilidades' },
-    { valor: 'B', descripcion: 'Guiar y dirigir con autoridad natural' },
-    { valor: 'C', descripcion: 'Elevar a otros hacia su máximo potencial' }
+    // NIVEL 3 - Carisma de Autoridad (12 preguntas)
+    {
+        nivel: 3,
+        texto: "Liderazgo: Tu rol natural es...",
+        opciones: [
+            { valor: 'A', descripcion: 'El Maestro (enseñas el camino).' },
+            { valor: 'B', descripcion: 'El Comandante (diriges la ejecución).' },
+            { valor: 'C', descripcion: 'El Coach (empoderas a los demás).' }
+        ]
+    },
+    {
+        nivel: 3,
+        texto: "Toma de decisiones: Al decidir algo para un grupo...",
+        opciones: [
+            { valor: 'A', descripcion: 'Explicas el \"por qué\" detalladamente.' },
+            { valor: 'B', descripcion: 'Dices \"confíen en mí, vamos por aquí\".' },
+            { valor: 'C', descripcion: 'Preguntas \"¿cómo nos sentimos con esta dirección?\".' }
+        ]
+    },
+    {
+        nivel: 3,
+        texto: "Crisis de tiempo: Si falta una hora para una entrega...",
+        opciones: [
+            { valor: 'A', descripcion: 'Das instrucciones claras y lógicas.' },
+            { valor: 'B', descripcion: 'Tomas el mando absoluto y delegas con fuerza.' },
+            { valor: 'C', descripcion: 'Motivas al equipo para un último esfuerzo conjunto.' }
+        ]
+    },
+    {
+        nivel: 3,
+        texto: "Postura en reuniones:",
+        opciones: [
+            { valor: 'A', descripcion: 'Erguida, pero relajada, con mirada atenta.' },
+            { valor: 'B', descripcion: 'Dominante, ocupando espacio y con gestos firmes.' },
+            { valor: 'C', descripcion: 'Inclinada hacia adelante, mostrando interés y apoyo.' }
+        ]
+    },
+    {
+        nivel: 3,
+        texto: "Visión de éxito: El éxito para ti es...",
+        opciones: [
+            { valor: 'A', descripcion: 'Que todos hayan entendido la lección.' },
+            { valor: 'B', descripcion: 'Haber alcanzado el objetivo a toda costa.' },
+            { valor: 'C', descripcion: 'Que el equipo haya crecido y se sienta orgulloso.' }
+        ]
+    },
+    {
+        nivel: 3,
+        texto: "Uso del \"No\": Cuando dices que no...",
+        opciones: [
+            { valor: 'A', descripcion: 'Lo justificas con argumentos sólidos.' },
+            { valor: 'B', descripcion: 'Es un \"no\" final y tajante.' },
+            { valor: 'C', descripcion: 'Es un \"no, pero...\" buscando no herir.' }
+        ]
+    },
+    {
+        nivel: 3,
+        texto: "Delegación: Delegas porque...",
+        opciones: [
+            { valor: 'A', descripcion: 'Es lo más eficiente para el sistema.' },
+            { valor: 'B', descripcion: 'Necesitas que otros ejecuten tu visión.' },
+            { valor: 'C', descripcion: 'Quieres que otros desarrollen sus habilidades.' }
+        ]
+    },
+    {
+        nivel: 3,
+        texto: "Inspiración: Inspiras a los demás mediante...",
+        opciones: [
+            { valor: 'A', descripcion: 'Tu conocimiento y sabiduría.' },
+            { valor: 'B', descripcion: 'Tu determinación e imparatibilidad.' },
+            { valor: 'C', descripcion: 'Tu calidez y fe en ellos.' }
+        ]
+    },
+    {
+        nivel: 3,
+        texto: "Manejo del estatus: En un grupo nuevo...",
+        opciones: [
+            { valor: 'A', descripcion: 'Te ganas el respeto por lo que sabes.' },
+            { valor: 'B', descripcion: 'Te ganas el respeto por tu seguridad personal.' },
+            { valor: 'C', descripcion: 'Te ganas el respeto por cómo tratas a la gente.' }
+        ]
+    },
+    {
+        nivel: 3,
+        texto: "Hablar en público: Tu meta principal es...",
+        opciones: [
+            { valor: 'A', descripcion: 'Informar y dar claridad.' },
+            { valor: 'B', descripcion: 'Convencer y mover a la acción.' },
+            { valor: 'C', descripcion: 'Inspirar y elevar el espíritu.' }
+        ]
+    },
+    {
+        nivel: 3,
+        texto: "Corrección: Si alguien no rinde como esperabas...",
+        opciones: [
+            { valor: 'A', descripcion: 'Le das una guía paso a paso para mejorar.' },
+            { valor: 'B', descripcion: 'Le exiges resultados inmediatos.' },
+            { valor: 'C', descripcion: 'Le preguntas qué necesita para brillar.' }
+        ]
+    },
+    {
+        nivel: 3,
+        texto: "Energía final: Después de una charla contigo, la gente se siente...",
+        opciones: [
+            { valor: 'A', descripcion: 'Iluminada (Light).' },
+            { valor: 'B', descripcion: 'Guiada (Lead).' },
+            { valor: 'C', descripcion: 'Empoderada (Lift).' }
+        ]
+    }
 ];
 
 // Estado de la aplicación
@@ -79,14 +381,9 @@ const mensajesNivel = {
     3: "Último paso. Aquí descubrimos cómo influyes y lideras."
 };
 
-// Función para obtener opciones según el nivel
-function getOpcionesPorNivel(nivel) {
-    switch(nivel) {
-        case 1: return opcionesNivel1;
-        case 2: return opcionesNivel2;
-        case 3: return opcionesNivel3;
-        default: return [];
-    }
+// Función para obtener opciones según la pregunta
+function getOpcionesPorPregunta(pregunta) {
+    return pregunta.opciones || [];
 }
 
 // Función para obtener nombre del nivel
@@ -131,7 +428,7 @@ function mostrarPregunta() {
     }
     
     const pregunta = preguntas[preguntaActual];
-    const opciones = getOpcionesPorNivel(pregunta.nivel);
+    const opciones = getOpcionesPorPregunta(pregunta);
     
     // Actualizar texto de pregunta
     document.getElementById('pregunta-texto').textContent = pregunta.texto;
