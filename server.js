@@ -9,50 +9,19 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || process.env.AMPLIFY_PORT || 3000;
 
-// Middleware básico (sin bodyParser todavía)
+// Middleware
 app.use(cors());
-
-// Servir archivos estáticos PRIMERO, antes de bodyParser
-// Rutas específicas para archivos estáticos críticos
-app.get('/app.js', (req, res) => {
-  const filePath = path.join(__dirname, 'public', 'app.js');
-  if (fs.existsSync(filePath)) {
-    res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
-    res.sendFile(filePath);
-  } else {
-    res.status(404).send('File not found');
-  }
-});
-
-app.get('/styles.css', (req, res) => {
-  const filePath = path.join(__dirname, 'public', 'styles.css');
-  if (fs.existsSync(filePath)) {
-    res.setHeader('Content-Type', 'text/css; charset=utf-8');
-    res.sendFile(filePath);
-  } else {
-    res.status(404).send('File not found');
-  }
-});
-
-// Servir otros archivos estáticos
-app.use(express.static('public', {
-  setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.css')) {
-      res.setHeader('Content-Type', 'text/css; charset=utf-8');
-    } else if (filePath.endsWith('.js')) {
-      res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
-    }
-  }
-}));
-
-// BodyParser solo para rutas de API (después de archivos estáticos)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Ruta principal - servir la página
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
+// En Amplify, NO servir archivos estáticos - Amplify los sirve desde CDN
+// Solo servir archivos estáticos en desarrollo local
+if (!process.env.AWS_EXECUTION_ENV) {
+  app.use(express.static('public'));
+  app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+  });
+}
 
 // Configuración de AWS SES
 const sesClient = new SESClient({
