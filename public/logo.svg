@@ -7,46 +7,28 @@
   </defs>
   
   <!-- Fondo circular con gradiente -->
-  <circle cx="100" cy="100" r="90" fill="url(#gradientMain)"/>
+  <circle cx="100" cy="100" r="95" fill="url(#gradientMain)"/>
   
-  <!-- Letra C estilizada -->
-  <path d="M 60 100 
-           C 60 70, 75 50, 100 50
-           C 125 50, 140 70, 140 85" 
-        fill="none" 
-        stroke="#ffffff" 
-        stroke-width="14" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
-  <path d="M 60 100 
-           C 60 130, 75 150, 100 150
-           C 125 150, 140 130, 140 115" 
-        fill="none" 
-        stroke="#ffffff" 
-        stroke-width="14" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
+  <!-- Letra C - diseño moderno y limpio -->
+  <path d="M 70 100 
+           A 30 30 0 0 1 100 70
+           L 100 60
+           A 40 40 0 0 0 60 100
+           Z" 
+        fill="#ffffff" 
+        opacity="0.95"/>
+  <path d="M 70 100 
+           A 30 30 0 0 0 100 130
+           L 100 140
+           A 40 40 0 0 1 60 100
+           Z" 
+        fill="#ffffff" 
+        opacity="0.95"/>
   
-  <!-- Letra R estilizada -->
-  <line x1="155" y1="55" x2="155" y2="145" 
-        stroke="#ffffff" 
-        stroke-width="14" 
-        stroke-linecap="round"/>
-  <path d="M 155 55 
-           Q 155 55, 170 55
-           Q 185 55, 185 75
-           Q 185 90, 175 95" 
-        fill="none" 
-        stroke="#ffffff" 
-        stroke-width="14" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
-  <line x1="155" y1="100" x2="185" y2="100" 
-        stroke="#ffffff" 
-        stroke-width="14" 
-        stroke-linecap="round"/>
-  <line x1="175" y1="100" x2="190" y2="145" 
-        stroke="#ffffff" 
-        stroke-width="14" 
-        stroke-linecap="round"/>
+  <!-- Letra R - diseño moderno -->
+  <rect x="125" y="60" width="12" height="80" rx="6" fill="#ffffff" opacity="0.95"/>
+  <rect x="125" y="60" width="35" height="12" rx="6" fill="#ffffff" opacity="0.95"/>
+  <rect x="150" y="72" width="10" height="12" rx="5" fill="#ffffff" opacity="0.95"/>
+  <rect x="125" y="100" width="25" height="12" rx="6" fill="#ffffff" opacity="0.95"/>
+  <rect x="145" y="112" width="12" height="28" rx="6" fill="#ffffff" opacity="0.95"/>
 </svg>

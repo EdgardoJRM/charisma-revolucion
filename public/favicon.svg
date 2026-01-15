@@ -7,46 +7,28 @@
   </defs>
   
   <!-- Fondo circular con gradiente -->
-  <circle cx="32" cy="32" r="28" fill="url(#faviconGradient)"/>
+  <circle cx="32" cy="32" r="30" fill="url(#faviconGradient)"/>
   
   <!-- Letra C -->
-  <path d="M 18 32 
-           C 18 22, 22 16, 28 16
-           C 34 16, 38 22, 38 26" 
-        fill="none" 
-        stroke="#ffffff" 
-        stroke-width="4" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
-  <path d="M 18 32 
-           C 18 42, 22 48, 28 48
-           C 34 48, 38 42, 38 38" 
-        fill="none" 
-        stroke="#ffffff" 
-        stroke-width="4" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
+  <path d="M 20 32 
+           A 12 12 0 0 1 32 20
+           L 32 18
+           A 14 14 0 0 0 18 32
+           Z" 
+        fill="#ffffff" 
+        opacity="0.95"/>
+  <path d="M 20 32 
+           A 12 12 0 0 0 32 44
+           L 32 46
+           A 14 14 0 0 1 18 32
+           Z" 
+        fill="#ffffff" 
+        opacity="0.95"/>
   
   <!-- Letra R -->
-  <line x1="42" y1="18" x2="42" y2="46" 
-        stroke="#ffffff" 
-        stroke-width="4" 
-        stroke-linecap="round"/>
-  <path d="M 42 18 
-           Q 42 18, 48 18
-           Q 52 18, 52 22
-           Q 52 26, 50 28" 
-        fill="none" 
-        stroke="#ffffff" 
-        stroke-width="4" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
-  <line x1="42" y1="32" x2="52" y2="32" 
-        stroke="#ffffff" 
-        stroke-width="4" 
-        stroke-linecap="round"/>
-  <line x1="50" y1="32" x2="54" y2="46" 
-        stroke="#ffffff" 
-        stroke-width="4" 
-        stroke-linecap="round"/>
+  <rect x="38" y="18" width="4" height="28" rx="2" fill="#ffffff" opacity="0.95"/>
+  <rect x="38" y="18" width="12" height="4" rx="2" fill="#ffffff" opacity="0.95"/>
+  <rect x="48" y="22" width="3" height="4" rx="1.5" fill="#ffffff" opacity="0.95"/>
+  <rect x="38" y="32" width="8" height="4" rx="2" fill="#ffffff" opacity="0.95"/>
+  <rect x="44" y="36" width="4" height="10" rx="2" fill="#ffffff" opacity="0.95"/>
 </svg>
