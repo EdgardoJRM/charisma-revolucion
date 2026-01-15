@@ -9,20 +9,22 @@ const PORT = process.env.PORT || process.env.AMPLIFY_PORT || 3000;
 
 // Middleware
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Servir archivos estáticos PRIMERO (antes de bodyParser para evitar problemas)
+// Servir archivos estáticos (necesario en Amplify cuando el backend maneja todas las rutas)
 app.use(express.static('public', {
   setHeaders: (res, path) => {
+    // Asegurar Content-Type correcto
     if (path.endsWith('.css')) {
-      res.setHeader('Content-Type', 'text/css');
+      res.setHeader('Content-Type', 'text/css; charset=utf-8');
     } else if (path.endsWith('.js')) {
-      res.setHeader('Content-Type', 'application/javascript');
+      res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+    } else if (path.endsWith('.html')) {
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
     }
   }
 }));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // Ruta principal - servir la página
 app.get('/', (req, res) => {
