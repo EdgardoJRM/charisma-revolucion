@@ -1,3 +1,4 @@
+// Lambda function for Charisma Revolución - Email with new visual identity
 const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');
 const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');
 const { DynamoDBDocumentClient, PutCommand } = require('@aws-sdk/lib-dynamodb');
