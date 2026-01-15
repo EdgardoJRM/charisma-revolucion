@@ -160,6 +160,8 @@ function mostrarPregunta() {
 function seleccionarOpcion(valor, cardElement) {
     // Guardar respuesta
     respuestas[preguntaActual] = valor;
+    console.log(`Pregunta ${preguntaActual + 1} respondida:`, valor);
+    console.log(`Total respuestas:`, respuestas.length, '/', preguntas.length);
     
     // Remover selección anterior
     document.querySelectorAll('.opcion-card').forEach(card => {
@@ -175,6 +177,7 @@ function seleccionarOpcion(valor, cardElement) {
         if (preguntaActual < preguntas.length) {
             mostrarPregunta();
         } else {
+            console.log('Todas las preguntas respondidas. Respuestas finales:', respuestas);
             mostrarPasoEmail();
         }
     }, 500);
@@ -230,6 +233,12 @@ async function enviarFormulario(e) {
     }
     
     // Validar que todas las preguntas estén respondidas
+    console.log('Validando respuestas:', {
+        totalPreguntas: preguntas.length,
+        totalRespuestas: respuestas ? respuestas.length : 0,
+        respuestas: respuestas
+    });
+    
     if (!respuestas || respuestas.length !== preguntas.length) {
         console.error('Respuestas incompletas:', {
             esperadas: preguntas.length,
@@ -241,12 +250,20 @@ async function enviarFormulario(e) {
     }
     
     // Verificar que todas las respuestas tengan valor
-    const respuestasIncompletas = respuestas.filter((r, index) => !r || r.trim() === '');
+    const respuestasIncompletas = [];
+    respuestas.forEach((r, index) => {
+        if (!r || (typeof r === 'string' && r.trim() === '')) {
+            respuestasIncompletas.push(index + 1);
+        }
+    });
+    
     if (respuestasIncompletas.length > 0) {
-        console.error('Hay respuestas vacías:', respuestasIncompletas);
-        mostrarMensaje('Por favor, asegúrate de responder todas las preguntas.', 'error');
+        console.error('Hay respuestas vacías en preguntas:', respuestasIncompletas);
+        mostrarMensaje(`Por favor, responde las preguntas: ${respuestasIncompletas.join(', ')}`, 'error');
         return;
     }
+    
+    console.log('✅ Todas las validaciones pasadas. Enviando datos...');
     
     const submitBtn = document.getElementById('btn-enviar');
     submitBtn.disabled = true;
