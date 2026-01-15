@@ -169,6 +169,7 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     padding-top: 20px;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* PASO 0: INTRO */
@@ -649,6 +650,10 @@ body {
     .opciones-cards {
         gap: 10px;
         padding: 10px 15px;
+        padding-bottom: 40px;
+        flex: 1 1 auto;
+        min-height: 0;
+        -webkit-overflow-scrolling: touch;
     }
 
     .opcion-card {
@@ -752,6 +757,7 @@ body {
 
     .opciones-cards {
         gap: 8px;
+        padding-bottom: 50px;
     }
 
     .opcion-card {
