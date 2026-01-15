@@ -376,7 +376,7 @@ let respuestas = [];
 
 // Mensajes psicológicos por nivel
 const mensajesNivel = {
-    1: "No hay respuestas correctas. Solo elige lo que más resuene contigo.",
+    1: "No hay respuestas incorrectas. Solo elige lo que más resuene contigo.",
     2: "Ahora vamos más profundo. Esto mide cómo conectas emocionalmente.",
     3: "Último paso. Aquí descubrimos cómo influyes y lideras."
 };
