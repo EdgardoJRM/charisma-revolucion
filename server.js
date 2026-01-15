@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
 const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');
+const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');
+const { DynamoDBDocumentClient, PutCommand, ScanCommand } = require('@aws-sdk/lib-dynamodb');
 require('dotenv').config();
 
 const app = express();
@@ -42,6 +44,19 @@ const sesClient = new SESClient({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   }
 });
+
+// Configuración de DynamoDB
+const dynamoClient = DynamoDBDocumentClient.from(new DynamoDBClient({
+  region: process.env.AWS_REGION || 'us-east-1',
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+  }
+}));
+
+const TABLE_NAME = process.env.DYNAMODB_TABLE || 'charisma-revolucion-clientes';
+
+const TABLE_NAME = process.env.DYNAMODB_TABLE || 'charisma-revolucion-clientes';
 
 // Mapeo de resultados
 const nivel1Map = {
@@ -337,8 +352,12 @@ app.post('/api/evaluar', async (req, res) => {
     const formula = construirFormula(nivel1Dominante, nivel2Dominante, nivel3Dominante);
     
     // Guardar datos del cliente (ORO para el negocio)
+    const fecha = new Date().toISOString();
+    const idCliente = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
     const datosCliente = {
-      fecha: new Date().toISOString(),
+      id: idCliente,
+      fecha: fecha,
       nombre,
       email,
       respuestas: respuestas,
@@ -359,7 +378,19 @@ app.post('/api/evaluar', async (req, res) => {
       formulaFinal: formula.formula
     };
     
-    // Guardar en archivo JSON (se puede migrar a DynamoDB después)
+    // Guardar en DynamoDB (principal)
+    try {
+      await dynamoClient.send(new PutCommand({
+        TableName: TABLE_NAME,
+        Item: datosCliente
+      }));
+      console.log('✅ Cliente guardado en DynamoDB:', datosCliente.nombre);
+    } catch (error) {
+      console.error('Error guardando en DynamoDB:', error);
+      // Continuar aunque falle DynamoDB
+    }
+    
+    // Guardar en archivo JSON (backup)
     try {
       const datosDir = path.join(__dirname, 'datos');
       if (!fs.existsSync(datosDir)) {
@@ -369,7 +400,6 @@ app.post('/api/evaluar', async (req, res) => {
       const archivo = path.join(datosDir, `clientes-${new Date().toISOString().split('T')[0]}.json`);
       let clientes = [];
       
-      // Leer archivo existente si existe
       if (fs.existsSync(archivo)) {
         try {
           const contenido = fs.readFileSync(archivo, 'utf8');
@@ -379,15 +409,11 @@ app.post('/api/evaluar', async (req, res) => {
         }
       }
       
-      // Agregar nuevo cliente
       clientes.push(datosCliente);
-      
-      // Guardar archivo
       fs.writeFileSync(archivo, JSON.stringify(clientes, null, 2), 'utf8');
-      console.log('✅ Datos del cliente guardados:', datosCliente.nombre);
+      console.log('✅ Backup guardado en archivo:', datosCliente.nombre);
     } catch (error) {
-      console.error('Error guardando datos del cliente:', error);
-      // No fallar el proceso si no se puede guardar
+      console.error('Error guardando backup:', error);
     }
     
     // Generar HTML del email
@@ -411,8 +437,92 @@ app.post('/api/evaluar', async (req, res) => {
   }
 });
 
+// Endpoint para obtener todos los clientes
+app.get('/api/clientes', async (req, res) => {
+  try {
+    const result = await dynamoClient.send(new ScanCommand({
+      TableName: TABLE_NAME
+    }));
+    
+    res.json({
+      success: true,
+      total: result.Items ? result.Items.length : 0,
+      clientes: result.Items || []
+    });
+  } catch (error) {
+    console.error('Error obteniendo clientes:', error);
+    res.status(500).json({
+      error: 'Error al obtener los clientes',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
+});
+
+// Endpoint para obtener estadísticas
+app.get('/api/estadisticas', async (req, res) => {
+  try {
+    const result = await dynamoClient.send(new ScanCommand({
+      TableName: TABLE_NAME
+    }));
+    
+    const clientes = result.Items || [];
+    
+    // Calcular estadísticas
+    const estadisticas = {
+      totalClientes: clientes.length,
+      formulas: {},
+      resultadosNivel1: {},
+      resultadosNivel2: {},
+      resultadosNivel3: {},
+      porFecha: {}
+    };
+    
+    clientes.forEach(cliente => {
+      // Contar fórmulas
+      const formula = cliente.formulaFinal;
+      if (formula) {
+        estadisticas.formulas[formula] = (estadisticas.formulas[formula] || 0) + 1;
+      }
+      
+      // Contar resultados por nivel
+      if (cliente.resultados) {
+        const r1 = cliente.resultados.nivel1?.resultado;
+        const r2 = cliente.resultados.nivel2?.resultado;
+        const r3 = cliente.resultados.nivel3?.resultado;
+        
+        if (r1) estadisticas.resultadosNivel1[r1] = (estadisticas.resultadosNivel1[r1] || 0) + 1;
+        if (r2) estadisticas.resultadosNivel2[r2] = (estadisticas.resultadosNivel2[r2] || 0) + 1;
+        if (r3) estadisticas.resultadosNivel3[r3] = (estadisticas.resultadosNivel3[r3] || 0) + 1;
+      }
+      
+      // Contar por fecha
+      const fecha = cliente.fecha ? cliente.fecha.split('T')[0] : 'sin-fecha';
+      estadisticas.porFecha[fecha] = (estadisticas.porFecha[fecha] || 0) + 1;
+    });
+    
+    res.json({
+      success: true,
+      estadisticas
+    });
+  } catch (error) {
+    console.error('Error obteniendo estadísticas:', error);
+    res.status(500).json({
+      error: 'Error al obtener estadísticas',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
+});
+
+// Ruta para servir el dashboard
+if (!process.env.AWS_EXECUTION_ENV) {
+  app.get('/dashboard.html', (req, res) => {
+    res.sendFile(__dirname + '/public/dashboard.html');
+  });
+}
+
 // Iniciar servidor
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
   console.log(`📧 Configurado para usar AWS SES`);
+  console.log(`💾 DynamoDB Table: ${TABLE_NAME}`);
 });

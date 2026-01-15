@@ -53,6 +53,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    overflow: hidden;
 }
 
 .intro-titulo {
@@ -90,13 +91,13 @@ body {
 }
 
 .btn-primario:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(34, 32, 34, 0.3);
     background: #ffd633;
 }
 
 .btn-primario:active {
-    transform: translateY(-1px);
+    transform: translateY(0);
 }
 
 .btn-primario:disabled {
@@ -114,6 +115,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
 }
 
 /* Barra de progreso */
@@ -203,7 +205,8 @@ body {
     margin: 0 auto;
     flex: 1;
     overflow-y: auto;
-    padding: 5px;
+    overflow-x: hidden;
+    padding: 10px;
 }
 
 .opcion-card {
@@ -233,7 +236,7 @@ body {
 }
 
 .opcion-card:hover {
-    transform: translateX(10px);
+    transform: translateX(5px);
     border-color: var(--color-azul-claro);
     box-shadow: 0 4px 15px rgba(63, 94, 120, 0.2);
 }
@@ -246,7 +249,7 @@ body {
     background: var(--color-blanco);
     border-color: var(--color-azul-oscuro);
     border-width: 4px;
-    transform: scale(1.02);
+    transform: scale(1.01);
     box-shadow: 0 6px 20px rgba(76, 92, 104, 0.3);
 }
 
@@ -296,6 +299,7 @@ body {
     flex-direction: column;
     justify-content: center;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .email-titulo {
