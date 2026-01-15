@@ -12,10 +12,13 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Servir archivos estáticos solo si no estamos en Amplify (Amplify los sirve desde CDN)
-if (!process.env.AWS_EXECUTION_ENV) {
-  app.use(express.static('public'));
-}
+// Servir archivos estáticos (necesario en Amplify también)
+app.use(express.static('public'));
+
+// Ruta principal - servir la página
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
 
 // Configuración de AWS SES
 const sesClient = new SESClient({
@@ -265,11 +268,6 @@ async function enviarEmailSES(destinatario, asunto, html) {
     throw error;
   }
 }
-
-// Ruta principal - servir la página
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
 
 // Ruta para procesar el formulario
 app.post('/api/evaluar', async (req, res) => {
