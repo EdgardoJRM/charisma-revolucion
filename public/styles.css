@@ -128,8 +128,27 @@ body {
 }
 
 @media (max-width: 768px) {
-    .persona {
+    .persona-2,
+    .persona-3,
+    .persona-4,
+    .persona-5 {
         display: none;
+    }
+    
+    .persona-1,
+    .persona-6 {
+        width: 120px;
+        height: 50vh;
+        opacity: 0.06;
+        filter: grayscale(60%) opacity(0.06) contrast(1.05);
+    }
+    
+    .persona-1 {
+        left: -30px;
+    }
+    
+    .persona-6 {
+        right: -30px;
     }
 }
 
@@ -672,6 +691,21 @@ body {
 }
 
 @media (max-width: 480px) {
+    .persona-1,
+    .persona-6 {
+        width: 100px;
+        height: 45vh;
+        opacity: 0.05;
+    }
+    
+    .persona-1 {
+        left: -25px;
+    }
+    
+    .persona-6 {
+        right: -25px;
+    }
+    
     .intro-titulo {
         font-size: 1.8em;
         margin-bottom: 10px;
