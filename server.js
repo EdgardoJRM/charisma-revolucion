@@ -283,6 +283,15 @@ async function enviarEmailSES(destinatario, asunto, html) {
   }
 }
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    environment: process.env.AWS_EXECUTION_ENV ? 'amplify' : 'local'
+  });
+});
+
 // Ruta para procesar el formulario
 app.post('/api/evaluar', async (req, res) => {
   try {
