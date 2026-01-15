@@ -84,87 +84,115 @@ function generarEmailHTML(nombre, formula) {
     <html>
     <head>
       <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
       <style>
         body {
-          font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+          font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+          font-weight: 400;
           line-height: 1.6;
-          color: #222022;
+          color: #00100b;
           max-width: 600px;
           margin: 0 auto;
           padding: 20px;
-          background-color: #f2f2f2;
+          background-color: #ffffff;
         }
         .container {
           background-color: #ffffff;
-          padding: 30px;
-          border-radius: 10px;
-          box-shadow: 0 2px 10px rgba(34, 32, 34, 0.1);
+          padding: 40px 30px;
+          border-radius: 16px;
+          box-shadow: 0 4px 20px rgba(0, 16, 11, 0.1);
+          border: 2px solid #ebebeb;
         }
         h1 {
-          color: #4C5C68;
+          font-family: 'Lora', serif;
+          font-weight: 700;
           text-align: center;
-          border-bottom: 3px solid #3F5E78;
-          padding-bottom: 10px;
-          font-size: 32px;
-          font-weight: bold;
-          letter-spacing: 2px;
-          margin-bottom: 20px;
+          background: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          font-size: 36px;
+          letter-spacing: 0.5px;
+          margin-bottom: 25px;
+          padding-bottom: 15px;
+          border-bottom: 3px solid #ebebeb;
         }
         h2 {
-          color: #4C5C68;
-          font-size: 20px;
-          margin-top: 25px;
-          margin-bottom: 15px;
+          font-family: 'Lora', serif;
+          font-weight: 700;
+          color: #8b5cf6;
+          font-size: 22px;
+          margin-top: 30px;
+          margin-bottom: 20px;
         }
         .formula {
-          background: linear-gradient(135deg, #4C5C68 0%, #3F5E78 100%);
-          color: #FFC907;
-          padding: 25px;
-          border-radius: 8px;
+          background: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
+          color: #ffffff;
+          padding: 30px;
+          border-radius: 16px;
           text-align: center;
-          font-size: 24px;
-          font-weight: bold;
-          margin: 20px 0;
-          letter-spacing: 3px;
-          border: 2px solid #222022;
+          font-size: 26px;
+          font-weight: 700;
+          font-family: 'Manrope', sans-serif;
+          margin: 25px 0;
+          letter-spacing: 1px;
+          box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
         }
         .componente {
-          background-color: #f2f2f2;
-          padding: 15px;
-          margin: 15px 0;
-          border-left: 4px solid #3F5E78;
-          border-radius: 4px;
+          background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(255, 107, 107, 0.05) 100%);
+          padding: 20px;
+          margin: 20px 0;
+          border-left: 5px solid #8b5cf6;
+          border-radius: 12px;
         }
         .componente h3 {
-          color: #4C5C68;
+          font-family: 'Manrope', sans-serif;
+          font-weight: 700;
+          color: #8b5cf6;
           margin-top: 0;
-          font-size: 16px;
-          font-weight: bold;
+          font-size: 18px;
         }
         .componente p {
-          color: #222022;
+          font-family: 'Manrope', sans-serif;
+          color: #00100b;
           margin: 10px 0 0 0;
+          line-height: 1.6;
         }
         .footer {
           text-align: center;
-          margin-top: 30px;
-          padding-top: 20px;
-          border-top: 1px solid #A5A5A5;
-          color: #A5A5A5;
+          margin-top: 35px;
+          padding-top: 25px;
+          border-top: 2px solid #ebebeb;
+          color: #8e8e93;
         }
         p {
-          color: #222022;
+          font-family: 'Manrope', sans-serif;
+          color: #00100b;
           margin: 15px 0;
+          line-height: 1.6;
         }
         strong {
-          color: #4C5C68;
+          font-weight: 700;
+          color: #8b5cf6;
         }
         .highlight-box {
-          background-color: #FFC907;
-          padding: 20px;
-          border-radius: 8px;
-          margin: 20px 0;
-          border: 2px solid #4C5C68;
+          background: linear-gradient(135deg, #14b8a6 0%, #8b5cf6 100%);
+          padding: 25px;
+          border-radius: 12px;
+          margin: 25px 0;
+          border: 2px solid #8b5cf6;
+        }
+        .highlight-box p {
+          margin: 0;
+          font-style: italic;
+          color: #ffffff;
+          font-family: 'Manrope', sans-serif;
+          line-height: 1.8;
+        }
+        .highlight-box strong {
+          color: #ffffff;
+          font-weight: 700;
         }
       </style>
     </head>
@@ -198,7 +226,7 @@ function generarEmailHTML(nombre, formula) {
         </div>
         
         <div class="highlight-box">
-          <p style="margin: 0; font-style: italic; color: #222022;">
+          <p>
             <strong>💡 Recuerda:</strong><br>
             • No hay combinación "mejor" o "peor" - cada una tiene sus fortalezas<br>
             • Tu autenticidad es tu poder - no trates de copiar a otros<br>
@@ -209,8 +237,8 @@ function generarEmailHTML(nombre, formula) {
         </div>
         
         <div class="footer">
-          <p>Con carisma,<br><strong>El equipo de Charisma Revolución</strong></p>
-          <p style="font-size: 12px;">
+          <p style="font-family: 'Manrope', sans-serif; font-weight: 600; color: #00100b;">Con carisma,<br><strong style="color: #8b5cf6;">El equipo de Charisma Revolución</strong></p>
+          <p style="font-size: 12px; color: #8e8e93; margin-top: 15px;">
             Este es un email automático. Por favor, no respondas a este mensaje.
           </p>
         </div>
