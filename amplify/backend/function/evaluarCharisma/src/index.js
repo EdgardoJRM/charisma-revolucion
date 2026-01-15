@@ -188,7 +188,7 @@ function generarEmailHTML(nombre, formula) {
         </div>
         
         <div class="componente">
-          <h3>💝 Nivel 2 - Carisma de Compasión: ${formula.componentes.nivel2}</h3>
+          <h3>💝 Nivel 2 - Carisma de Confianza/Empatía: ${formula.componentes.nivel2}</h3>
           <p>${descripciones[formula.componentes.nivel2]}</p>
         </div>
         
@@ -199,7 +199,12 @@ function generarEmailHTML(nombre, formula) {
         
         <div class="highlight-box">
           <p style="margin: 0; font-style: italic; color: #222022;">
-            <strong>💡 Recuerda:</strong> Esta fórmula es única para ti. Úsala como guía para desarrollar tu carisma y crear conexiones más profundas y auténticas con los demás.
+            <strong>💡 Recuerda:</strong><br>
+            • No hay combinación "mejor" o "peor" - cada una tiene sus fortalezas<br>
+            • Tu autenticidad es tu poder - no trates de copiar a otros<br>
+            • Amplifica lo natural - no fuerces estilos que no son tuyos<br>
+            • Contexto importa - aprende cuándo usar cada aspecto de tu carisma<br><br>
+            <strong>¡Tu carisma único es tu superpoder!</strong>
           </p>
         </div>
         
