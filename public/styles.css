@@ -402,6 +402,7 @@ body {
 .opcion-card.seleccionada::before {
     width: 5px;
     background: var(--gradiente-principal);
+    border-radius: 16px 0 0 16px;
 }
 
 .opcion-letra {
