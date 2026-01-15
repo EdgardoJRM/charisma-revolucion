@@ -13,17 +13,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Servir archivos estáticos (necesario en Amplify cuando el backend maneja todas las rutas)
+const path = require('path');
+const fs = require('fs');
+
 app.use(express.static('public', {
-  setHeaders: (res, path) => {
+  setHeaders: (res, filePath) => {
     // Asegurar Content-Type correcto
-    if (path.endsWith('.css')) {
+    if (filePath.endsWith('.css')) {
       res.setHeader('Content-Type', 'text/css; charset=utf-8');
-    } else if (path.endsWith('.js')) {
+    } else if (filePath.endsWith('.js')) {
       res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
-    } else if (path.endsWith('.html')) {
+    } else if (filePath.endsWith('.html')) {
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
     }
-  }
+  },
+  // Fallthrough: si no encuentra el archivo, continúa a la siguiente ruta
+  fallthrough: false
 }));
 
 // Ruta principal - servir la página
