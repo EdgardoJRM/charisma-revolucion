@@ -1,48 +1,30 @@
 # Configuración de Rewrites en Amplify
 
-Para que los archivos estáticos se sirvan desde el CDN y solo las rutas de API vayan al backend, configura estos rewrites en Amplify Console:
+## ✅ SOLUCIÓN RECOMENDADA: Single Page App (SPA)
 
-## En Amplify Console:
+Esta configuración sirve archivos estáticos (CSS, JS, etc.) desde el CDN y solo redirige rutas no-estáticas a index.html.
+
+### En Amplify Console:
 
 1. Ve a tu app en Amplify
 2. Click en "Rewrites and redirects" en el menú lateral
 3. Elimina todas las reglas existentes
-4. Agrega estas reglas en este orden:
-
-### Regla 1: API routes al backend
-```json
-{
-  "source": "/api/<*>",
-  "target": "/api/<*>",
-  "status": "200",
-  "type": "REWRITE"
-}
-```
-
-### Regla 2: SPA fallback
-```json
-{
-  "source": "/<*>",
-  "target": "/index.html",
-  "status": "200",
-  "type": "REWRITE"
-}
-```
-
-**⚠️ IMPORTANTE:** El orden importa. La regla de `/api/*` debe ir ANTES de la regla general.
-
-## Alternativa: Si Amplify no permite múltiples rewrites
-
-Si Amplify solo permite una regla, usa esta:
+4. Agrega esta regla:
 
 ```json
-{
-  "source": "/<*>",
-  "target": "/index.html",
-  "status": "200",
-  "type": "REWRITE"
-}
+[
+  {
+    "source": "</^[^.]+$|\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/>",
+    "status": "200",
+    "target": "/index.html"
+  }
+]
 ```
 
-Y asegúrate de que el backend solo maneje rutas `/api/*` (ya está configurado así).
+**¿Qué hace esto?**
+- ✅ Los archivos `.css`, `.js`, `.png`, etc. se sirven directamente desde el CDN
+- ✅ Las rutas como `/`, `/about`, etc. se redirigen a `/index.html` (SPA)
+- ✅ Las rutas `/api/*` pasan al backend Express automáticamente
+
+**Nota:** El backend ya está configurado para solo manejar rutas `/api/*`, así que esto funcionará perfectamente.
 
