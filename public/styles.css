@@ -137,7 +137,7 @@ body {
 .paso {
     display: none;
     height: 100vh;
-    padding: 10px;
+    padding: 20px;
     overflow: hidden;
     position: relative;
     z-index: 1;
@@ -154,7 +154,9 @@ body {
 .intro-container {
     text-align: center;
     max-width: 700px;
-    padding: 20px;
+    width: 100%;
+    padding: 40px 30px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -247,7 +249,8 @@ body {
 .pregunta-wrapper {
     max-width: 900px;
     width: 100%;
-    padding: 10px;
+    padding: 20px 30px;
+    margin: 0 auto;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -339,11 +342,12 @@ body {
     display: grid;
     gap: 12px;
     max-width: 800px;
+    width: 100%;
     margin: 0 auto;
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 10px;
+    padding: 15px 0;
 }
 
 .opcion-card {
@@ -431,7 +435,8 @@ body {
 .email-container {
     max-width: 600px;
     width: 100%;
-    padding: 20px;
+    padding: 40px 30px;
+    margin: 0 auto;
     text-align: center;
     height: 100%;
     display: flex;
@@ -544,11 +549,11 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
     .paso {
-        padding: 5px;
+        padding: 15px;
     }
 
     .intro-container {
-        padding: 10px;
+        padding: 30px 20px;
     }
 
     .intro-titulo {
@@ -570,7 +575,7 @@ body {
     }
 
     .pregunta-wrapper {
-        padding: 5px;
+        padding: 20px 15px;
     }
 
     .progress-container {
@@ -598,7 +603,7 @@ body {
 
     .opciones-cards {
         gap: 10px;
-        padding: 3px;
+        padding: 10px 0;
     }
 
     .opcion-card {
@@ -620,7 +625,7 @@ body {
     }
 
     .email-container {
-        padding: 10px;
+        padding: 30px 20px;
     }
 
     .email-titulo {
