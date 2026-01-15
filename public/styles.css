@@ -362,7 +362,7 @@ body {
     align-items: center;
     gap: 15px;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     flex-shrink: 0;
     box-shadow: 0 2px 8px rgba(0, 16, 11, 0.05);
     margin: 2px;
@@ -377,6 +377,7 @@ body {
     width: 0;
     background: var(--gradiente-principal);
     transition: width 0.3s ease;
+    border-radius: 16px 0 0 16px;
 }
 
 .opcion-card:hover {
