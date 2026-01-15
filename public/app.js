@@ -272,7 +272,10 @@ async function enviarFormulario(e) {
     try {
         console.log('Enviando datos:', { nombre, email, respuestasCount: respuestas.length });
         
-        const response = await fetch('/api/evaluar', {
+        // Usar Lambda Function en Amplify
+        const apiUrl = '/api/evaluar';
+        
+        const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

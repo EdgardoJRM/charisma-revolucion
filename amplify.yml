@@ -19,9 +19,10 @@ backend:
   phases:
     build:
       commands:
+        - cd amplify/backend/function/evaluarCharisma/src
         - npm install
   artifacts:
-    baseDirectory: .
+    baseDirectory: amplify/backend
     files:
       - '**/*'
     discardPaths: no
