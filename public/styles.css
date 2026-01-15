@@ -249,13 +249,13 @@ body {
 .pregunta-wrapper {
     max-width: 900px;
     width: 100%;
-    padding: 20px 30px;
+    padding: 20px 40px;
     margin: 0 auto;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* Barra de progreso */
@@ -346,8 +346,8 @@ body {
     margin: 0 auto;
     flex: 1;
     overflow-y: auto;
-    overflow-x: hidden;
-    padding: 15px 0;
+    overflow-x: visible;
+    padding: 15px 20px;
 }
 
 .opcion-card {
@@ -361,9 +361,10 @@ body {
     align-items: center;
     gap: 15px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     flex-shrink: 0;
     box-shadow: 0 2px 8px rgba(0, 16, 11, 0.05);
+    margin: 2px;
 }
 
 .opcion-card::before {
@@ -378,9 +379,10 @@ body {
 }
 
 .opcion-card:hover {
-    transform: translateX(5px);
     border-color: var(--color-purple);
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 6px 25px rgba(139, 92, 246, 0.3);
+    border-width: 4px;
+    margin: 0;
 }
 
 .opcion-card:hover::before {
@@ -391,8 +393,8 @@ body {
     background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(255, 107, 107, 0.05) 100%);
     border-color: var(--color-purple);
     border-width: 4px;
-    transform: scale(1.01);
     box-shadow: 0 6px 25px rgba(139, 92, 246, 0.3);
+    margin: 0;
 }
 
 .opcion-card.seleccionada::before {
@@ -603,7 +605,7 @@ body {
 
     .opciones-cards {
         gap: 10px;
-        padding: 10px 0;
+        padding: 10px 15px;
     }
 
     .opcion-card {
