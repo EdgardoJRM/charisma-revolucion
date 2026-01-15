@@ -4,51 +4,49 @@
       <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#ff6b6b;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="gradientSecondary" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
-    </linearGradient>
   </defs>
   
   <!-- Fondo circular con gradiente -->
-  <circle cx="100" cy="100" r="95" fill="url(#gradientMain)" stroke="#00100b" stroke-width="3"/>
+  <circle cx="100" cy="100" r="90" fill="url(#gradientMain)"/>
   
-  <!-- Letra C -->
-  <path d="M 50 100 Q 50 60 80 50 Q 110 45 130 65 Q 140 75 140 85" 
+  <!-- Letra C estilizada -->
+  <path d="M 60 100 
+           C 60 70, 75 50, 100 50
+           C 125 50, 140 70, 140 85" 
         fill="none" 
         stroke="#ffffff" 
-        stroke-width="12" 
+        stroke-width="14" 
         stroke-linecap="round" 
         stroke-linejoin="round"/>
-  <path d="M 50 100 Q 50 140 80 150 Q 110 155 130 135 Q 140 125 140 115" 
+  <path d="M 60 100 
+           C 60 130, 75 150, 100 150
+           C 125 150, 140 130, 140 115" 
         fill="none" 
         stroke="#ffffff" 
-        stroke-width="12" 
+        stroke-width="14" 
         stroke-linecap="round" 
         stroke-linejoin="round"/>
   
-  <!-- Letra R -->
-  <path d="M 150 50 L 150 150" 
-        fill="none" 
+  <!-- Letra R estilizada -->
+  <line x1="155" y1="55" x2="155" y2="145" 
         stroke="#ffffff" 
-        stroke-width="12" 
+        stroke-width="14" 
         stroke-linecap="round"/>
-  <path d="M 150 50 Q 150 50 170 50 Q 185 50 185 70 Q 185 85 175 90" 
+  <path d="M 155 55 
+           Q 155 55, 170 55
+           Q 185 55, 185 75
+           Q 185 90, 175 95" 
         fill="none" 
         stroke="#ffffff" 
-        stroke-width="12" 
+        stroke-width="14" 
         stroke-linecap="round" 
         stroke-linejoin="round"/>
-  <path d="M 150 100 L 185 100 Q 190 100 190 115 Q 190 130 185 135 Q 180 140 175 140 L 150 140" 
-        fill="none" 
+  <line x1="155" y1="100" x2="185" y2="100" 
         stroke="#ffffff" 
-        stroke-width="12" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
-  <path d="M 175 100 L 190 150" 
-        fill="none" 
+        stroke-width="14" 
+        stroke-linecap="round"/>
+  <line x1="175" y1="100" x2="190" y2="145" 
         stroke="#ffffff" 
-        stroke-width="12" 
+        stroke-width="14" 
         stroke-linecap="round"/>
 </svg>
-
