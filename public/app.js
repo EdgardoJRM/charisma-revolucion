@@ -230,8 +230,21 @@ async function enviarFormulario(e) {
     }
     
     // Validar que todas las preguntas estén respondidas
-    if (respuestas.length !== preguntas.length) {
-        mostrarMensaje('Por favor, completa todas las preguntas', 'error');
+    if (!respuestas || respuestas.length !== preguntas.length) {
+        console.error('Respuestas incompletas:', {
+            esperadas: preguntas.length,
+            recibidas: respuestas ? respuestas.length : 0,
+            respuestas: respuestas
+        });
+        mostrarMensaje(`Por favor, completa todas las preguntas. Faltan ${preguntas.length - (respuestas ? respuestas.length : 0)} respuestas.`, 'error');
+        return;
+    }
+    
+    // Verificar que todas las respuestas tengan valor
+    const respuestasIncompletas = respuestas.filter((r, index) => !r || r.trim() === '');
+    if (respuestasIncompletas.length > 0) {
+        console.error('Hay respuestas vacías:', respuestasIncompletas);
+        mostrarMensaje('Por favor, asegúrate de responder todas las preguntas.', 'error');
         return;
     }
     

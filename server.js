@@ -336,6 +336,60 @@ app.post('/api/evaluar', async (req, res) => {
     // Construir fórmula final
     const formula = construirFormula(nivel1Dominante, nivel2Dominante, nivel3Dominante);
     
+    // Guardar datos del cliente (ORO para el negocio)
+    const datosCliente = {
+      fecha: new Date().toISOString(),
+      nombre,
+      email,
+      respuestas: respuestas,
+      resultados: {
+        nivel1: {
+          dominante: nivel1Dominante,
+          resultado: formula.componentes.nivel1
+        },
+        nivel2: {
+          dominante: nivel2Dominante,
+          resultado: formula.componentes.nivel2
+        },
+        nivel3: {
+          dominante: nivel3Dominante,
+          resultado: formula.componentes.nivel3
+        }
+      },
+      formulaFinal: formula.formula
+    };
+    
+    // Guardar en archivo JSON (se puede migrar a DynamoDB después)
+    try {
+      const datosDir = path.join(__dirname, 'datos');
+      if (!fs.existsSync(datosDir)) {
+        fs.mkdirSync(datosDir, { recursive: true });
+      }
+      
+      const archivo = path.join(datosDir, `clientes-${new Date().toISOString().split('T')[0]}.json`);
+      let clientes = [];
+      
+      // Leer archivo existente si existe
+      if (fs.existsSync(archivo)) {
+        try {
+          const contenido = fs.readFileSync(archivo, 'utf8');
+          clientes = JSON.parse(contenido);
+        } catch (e) {
+          console.log('Creando nuevo archivo de clientes');
+        }
+      }
+      
+      // Agregar nuevo cliente
+      clientes.push(datosCliente);
+      
+      // Guardar archivo
+      fs.writeFileSync(archivo, JSON.stringify(clientes, null, 2), 'utf8');
+      console.log('✅ Datos del cliente guardados:', datosCliente.nombre);
+    } catch (error) {
+      console.error('Error guardando datos del cliente:', error);
+      // No fallar el proceso si no se puede guardar
+    }
+    
     // Generar HTML del email
     const emailHTML = generarEmailHTML(nombre, formula);
     const asunto = `✨ Tu Fórmula de Carisma - ${nombre}`;
