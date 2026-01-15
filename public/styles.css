@@ -138,7 +138,7 @@ body {
     display: none;
     height: 100vh;
     padding: 20px;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     z-index: 1;
 }
@@ -148,6 +148,7 @@ body {
     align-items: center;
     justify-content: center;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* PASO 0: INTRO */
