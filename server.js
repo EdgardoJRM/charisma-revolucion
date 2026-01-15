@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
+const fs = require('fs');
 const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');
 require('dotenv').config();
 
@@ -12,23 +14,29 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Servir archivos estáticos (necesario en Amplify cuando el backend maneja todas las rutas)
-const path = require('path');
-const fs = require('fs');
+// Servir archivos estáticos ANTES de cualquier otra cosa
+// Rutas específicas para archivos estáticos
+app.get('/app.js', (req, res) => {
+  const filePath = path.join(__dirname, 'public', 'app.js');
+  res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+  res.sendFile(filePath);
+});
 
+app.get('/styles.css', (req, res) => {
+  const filePath = path.join(__dirname, 'public', 'styles.css');
+  res.setHeader('Content-Type', 'text/css; charset=utf-8');
+  res.sendFile(filePath);
+});
+
+// Servir otros archivos estáticos
 app.use(express.static('public', {
   setHeaders: (res, filePath) => {
-    // Asegurar Content-Type correcto
     if (filePath.endsWith('.css')) {
       res.setHeader('Content-Type', 'text/css; charset=utf-8');
     } else if (filePath.endsWith('.js')) {
       res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
-    } else if (filePath.endsWith('.html')) {
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
     }
-  },
-  // Fallthrough: si no encuentra el archivo, continúa a la siguiente ruta
-  fallthrough: false
+  }
 }));
 
 // Ruta principal - servir la página
