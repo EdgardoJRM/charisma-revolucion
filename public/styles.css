@@ -1,0 +1,436 @@
+/* Variables de colores - Identidad Visual Charisma Revolución */
+:root {
+    --color-blanco: #f2f2f2;
+    --color-negro: #222022;
+    --color-gris: #A5A5A5;
+    --color-azul-claro: #3F5E78;
+    --color-azul-oscuro: #4C5C68;
+    --color-amarillo: #FFC907;
+}
+
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mark+Pro:wght@100;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Mark Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+    background: var(--color-blanco);
+    min-height: 100vh;
+    color: var(--color-negro);
+    overflow-x: hidden;
+}
+
+/* Sistema de pasos */
+.paso {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.paso.activo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* PASO 0: INTRO */
+.intro-container {
+    text-align: center;
+    max-width: 700px;
+    padding: 40px 20px;
+}
+
+.intro-titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 4em;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+    line-height: 1.1;
+}
+
+.intro-subtitulo {
+    font-family: 'Mark Pro', sans-serif;
+    font-weight: 400;
+    font-size: 1.3em;
+    color: var(--color-negro);
+    margin-bottom: 50px;
+    line-height: 1.6;
+}
+
+.btn-primario {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    background: var(--color-amarillo);
+    color: var(--color-negro);
+    padding: 20px 60px;
+    font-size: 1.8em;
+    letter-spacing: 2px;
+    border: 3px solid var(--color-azul-oscuro);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(34, 32, 34, 0.2);
+}
+
+.btn-primario:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(34, 32, 34, 0.3);
+    background: #ffd633;
+}
+
+.btn-primario:active {
+    transform: translateY(-1px);
+}
+
+.btn-primario:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* PASO 1-3: PREGUNTAS */
+.pregunta-wrapper {
+    max-width: 900px;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Barra de progreso */
+.progress-container {
+    margin-bottom: 40px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-family: 'Mark Pro', sans-serif;
+    font-weight: 500;
+    font-size: 0.95em;
+    color: var(--color-azul-oscuro);
+}
+
+.progress-bar {
+    background: var(--color-gris);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, var(--color-azul-claro) 0%, var(--color-azul-oscuro) 100%);
+    height: 100%;
+    transition: width 0.5s ease;
+    border-radius: 4px;
+}
+
+/* Mensaje psicológico */
+.mensaje-nivel {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 15px;
+    background: var(--color-amarillo);
+    border-radius: 8px;
+    border: 2px solid var(--color-azul-oscuro);
+}
+
+.mensaje-nivel p {
+    font-family: 'Mark Pro', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--color-negro);
+    font-size: 1.1em;
+    margin: 0;
+}
+
+/* Pregunta actual */
+.pregunta-actual {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pregunta-texto {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 2.5em;
+    color: var(--color-azul-oscuro);
+    text-align: center;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+/* Opciones como cards grandes */
+.opciones-cards {
+    display: grid;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.opcion-card {
+    background: white;
+    border: 3px solid var(--color-gris);
+    border-radius: 12px;
+    padding: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.opcion-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: var(--color-azul-claro);
+    transition: width 0.3s ease;
+}
+
+.opcion-card:hover {
+    transform: translateX(10px);
+    border-color: var(--color-azul-claro);
+    box-shadow: 0 4px 15px rgba(63, 94, 120, 0.2);
+}
+
+.opcion-card:hover::before {
+    width: 5px;
+}
+
+.opcion-card.seleccionada {
+    background: var(--color-blanco);
+    border-color: var(--color-azul-oscuro);
+    border-width: 4px;
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(76, 92, 104, 0.3);
+}
+
+.opcion-card.seleccionada::before {
+    width: 5px;
+    background: var(--color-amarillo);
+}
+
+.opcion-letra {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 2.5em;
+    color: var(--color-azul-oscuro);
+    min-width: 60px;
+    text-align: center;
+    background: var(--color-blanco);
+    border-radius: 8px;
+    padding: 10px;
+    border: 2px solid var(--color-azul-claro);
+}
+
+.opcion-card.seleccionada .opcion-letra {
+    background: var(--color-amarillo);
+    border-color: var(--color-azul-oscuro);
+}
+
+.opcion-contenido {
+    flex: 1;
+}
+
+.opcion-descripcion {
+    font-family: 'Mark Pro', sans-serif;
+    font-weight: 400;
+    font-size: 1.2em;
+    color: var(--color-negro);
+    line-height: 1.6;
+}
+
+/* PASO FINAL: EMAIL */
+.email-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.email-titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 3.5em;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+.email-subtitulo {
+    font-family: 'Mark Pro', sans-serif;
+    font-weight: 400;
+    font-size: 1.2em;
+    color: var(--color-negro);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.form-email {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(34, 32, 34, 0.1);
+    text-align: left;
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    font-family: 'Mark Pro', sans-serif;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 10px;
+    color: var(--color-negro);
+    font-size: 1.05em;
+}
+
+.input-group input {
+    font-family: 'Mark Pro', sans-serif;
+    font-weight: 400;
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--color-gris);
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+    color: var(--color-negro);
+    background: white;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--color-azul-claro);
+}
+
+.form-email .btn-primario {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Mensaje de confirmación */
+.mensaje {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Mark Pro', sans-serif;
+    font-weight: 500;
+    padding: 20px 30px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 500px;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(34, 32, 34, 0.3);
+}
+
+.mensaje.success {
+    background: var(--color-amarillo);
+    color: var(--color-negro);
+    border: 2px solid var(--color-azul-oscuro);
+}
+
+.mensaje.error {
+    background: #ffebee;
+    color: #c62828;
+    border: 2px solid #f44336;
+}
+
+.mensaje.hidden {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .intro-titulo {
+        font-size: 2.5em;
+    }
+
+    .intro-subtitulo {
+        font-size: 1.1em;
+    }
+
+    .btn-primario {
+        padding: 18px 40px;
+        font-size: 1.5em;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .pregunta-texto {
+        font-size: 1.8em;
+    }
+
+    .opcion-card {
+        padding: 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .opcion-letra {
+        font-size: 2em;
+        min-width: 50px;
+    }
+
+
+    .email-titulo {
+        font-size: 2.5em;
+    }
+
+    .form-email {
+        padding: 30px 20px;
+    }
+
+    .mensaje {
+        left: 20px;
+        right: 20px;
+        transform: none;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-titulo {
+        font-size: 2em;
+    }
+
+    .pregunta-texto {
+        font-size: 1.5em;
+    }
+
+    .opciones-cards {
+        gap: 15px;
+    }
+
+    .opcion-card {
+        padding: 15px;
+    }
+}

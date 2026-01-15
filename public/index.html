@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charisma Revolución - Examen de Carisma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mark+Pro:wght@100;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- PASO 0: INTRO -->
+    <div id="paso-intro" class="paso activo">
+        <div class="intro-container">
+            <h1 class="intro-titulo">Descubre Tu Receta De Carisma</h1>
+            <p class="intro-subtitulo">Este diagnóstico toma menos de 5 minutos y revela cómo conectas, inspiras y lideras.</p>
+            <button id="btn-comenzar" class="btn-primario">Comenzar Mi Diagnóstico</button>
+        </div>
+    </div>
+
+    <!-- PASO 1-3: PREGUNTAS -->
+    <div id="paso-preguntas" class="paso">
+        <div class="pregunta-wrapper">
+            <!-- Barra de progreso -->
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span id="nivel-texto">Nivel 1 de 3</span>
+                    <span id="porcentaje-texto">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Mensaje psicológico por nivel -->
+            <div id="mensaje-nivel" class="mensaje-nivel">
+                <p id="texto-psicologico">No hay respuestas correctas. Solo elige lo que más resuene contigo.</p>
+            </div>
+
+            <!-- Pregunta actual -->
+            <div class="pregunta-actual">
+                <h2 id="pregunta-texto" class="pregunta-texto"></h2>
+                <div id="opciones-container" class="opciones-cards"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PASO FINAL: EMAIL -->
+    <div id="paso-email" class="paso">
+        <div class="email-container">
+            <h1 class="email-titulo">Tu Receta De Carisma Está Lista</h1>
+            <p class="email-subtitulo">Dinos dónde enviarla para que puedas revisarla con calma.</p>
+            
+            <form id="form-email" class="form-email">
+                <div class="input-group">
+                    <label for="nombre">Nombre Completo *</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <button type="submit" class="btn-primario" id="btn-enviar">
+                    Recibir Mi Receta De Carisma
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Mensaje de confirmación -->
+    <div id="mensaje" class="mensaje hidden"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
