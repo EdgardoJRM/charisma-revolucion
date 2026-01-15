@@ -6,7 +6,7 @@
     <title>CRM - Charisma Revolución</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mark+Pro:wght@100;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,22 +15,23 @@
         }
         
         body {
-            font-family: 'Mark Pro', sans-serif;
-            background: #f2f2f2;
-            color: #222022;
+            font-family: 'Manrope', sans-serif;
+            background: #ffffff;
+            color: #00100b;
         }
         
         .header {
-            background: linear-gradient(135deg, #4C5C68 0%, #3F5E78 100%);
+            background: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
             color: white;
             padding: 30px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         .header h1 {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: 'Lora', serif;
+            font-weight: 700;
             font-size: 3em;
-            letter-spacing: 2px;
+            letter-spacing: 0.5px;
             margin-bottom: 10px;
         }
         
@@ -57,20 +58,24 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid #3F5E78;
+            border-left: 4px solid #8b5cf6;
         }
         
         .stat-card h3 {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
             font-size: 1.2em;
-            color: #4C5C68;
+            color: #8b5cf6;
             margin-bottom: 8px;
         }
         
         .stat-card .number {
             font-size: 2em;
-            font-weight: bold;
-            color: #FFC907;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .controls {
@@ -93,41 +98,45 @@
         .search-box input {
             width: 100%;
             padding: 12px;
-            border: 2px solid #A5A5A5;
-            border-radius: 8px;
+            border: 2px solid #ebebeb;
+            border-radius: 10px;
             font-size: 1em;
-            font-family: 'Mark Pro', sans-serif;
+            font-family: 'Manrope', sans-serif;
         }
         
         .search-box input:focus {
             outline: none;
-            border-color: #3F5E78;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
         }
         
         .btn {
-            background: #FFC907;
-            color: #222022;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
+            color: white;
             padding: 12px 25px;
-            border: 2px solid #4C5C68;
-            border-radius: 8px;
+            border: none;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
-            font-family: 'Mark Pro', sans-serif;
+            font-family: 'Manrope', sans-serif;
             transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
         }
         
         .btn:hover {
-            background: #ffd633;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
         }
         
         .btn-secondary {
             background: white;
-            border-color: #A5A5A5;
+            border: 2px solid #ebebeb;
+            color: #00100b;
         }
         
         .btn-secondary:hover {
             background: #f8f9fa;
+            border-color: #8b5cf6;
         }
         
         .clientes-table {
@@ -143,7 +152,7 @@
         }
         
         thead {
-            background: #4C5C68;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
             color: white;
         }
         
@@ -151,14 +160,15 @@
             padding: 15px;
             text-align: left;
             font-weight: 600;
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 1px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
             font-size: 1.1em;
         }
         
         td {
             padding: 15px;
-            border-bottom: 1px solid #f2f2f2;
+            border-bottom: 1px solid #ebebeb;
         }
         
         tbody tr {
@@ -171,8 +181,8 @@
         }
         
         .formula-badge {
-            background: #FFC907;
-            color: #222022;
+            background: linear-gradient(135deg, #14b8a6 0%, #8b5cf6 100%);
+            color: white;
             padding: 5px 12px;
             border-radius: 20px;
             font-weight: 600;
@@ -181,7 +191,7 @@
         }
         
         .resultado-badge {
-            background: #3F5E78;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
             color: white;
             padding: 4px 10px;
             border-radius: 15px;
@@ -226,14 +236,18 @@
             align-items: center;
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 2px solid #f2f2f2;
+            border-bottom: 2px solid #ebebeb;
         }
         
         .modal-header h2 {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: 'Lora', serif;
+            font-weight: 700;
             font-size: 2.5em;
-            color: #4C5C68;
-            letter-spacing: 1px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.5px;
         }
         
         .close-btn {
@@ -241,7 +255,7 @@
             border: none;
             font-size: 2em;
             cursor: pointer;
-            color: #A5A5A5;
+            color: #8e8e93;
             padding: 0;
             width: 40px;
             height: 40px;
@@ -251,7 +265,7 @@
         }
         
         .close-btn:hover {
-            color: #222022;
+            color: #00100b;
         }
         
         .detail-section {
@@ -259,29 +273,30 @@
         }
         
         .detail-section h3 {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
             font-size: 1.5em;
-            color: #4C5C68;
+            color: #8b5cf6;
             margin-bottom: 15px;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         
         .detail-item {
             margin-bottom: 15px;
             padding: 15px;
             background: #f8f9fa;
-            border-radius: 8px;
+            border-radius: 10px;
         }
         
         .detail-item label {
             font-weight: 600;
-            color: #4C5C68;
+            color: #8b5cf6;
             display: block;
             margin-bottom: 5px;
         }
         
         .detail-item .value {
-            color: #222022;
+            color: #00100b;
             font-size: 1.1em;
         }
         
@@ -295,16 +310,16 @@
         .respuesta-item {
             background: white;
             padding: 10px;
-            border-radius: 6px;
+            border-radius: 8px;
             text-align: center;
-            border: 2px solid #A5A5A5;
+            border: 2px solid #ebebeb;
             font-weight: 600;
         }
         
         .loading {
             text-align: center;
             padding: 60px;
-            color: #A5A5A5;
+            color: #8e8e93;
             font-size: 1.2em;
         }
         
@@ -312,20 +327,24 @@
             background: #ffebee;
             color: #c62828;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             margin: 20px 0;
         }
         
         .empty-state {
             text-align: center;
             padding: 60px;
-            color: #A5A5A5;
+            color: #8e8e93;
         }
         
         .empty-state h3 {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: 'Lora', serif;
+            font-weight: 700;
             font-size: 2em;
-            color: #4C5C68;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 10px;
         }
         

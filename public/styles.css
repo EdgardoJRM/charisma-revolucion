@@ -1,15 +1,19 @@
-/* Variables de colores - Identidad Visual Charisma Revolución */
+/* Variables de colores - Nueva Identidad Visual Charisma Revolución */
 :root {
-    --color-blanco: #f2f2f2;
-    --color-negro: #222022;
-    --color-gris: #A5A5A5;
-    --color-azul-claro: #3F5E78;
-    --color-azul-oscuro: #4C5C68;
-    --color-amarillo: #FFC907;
+    --color-rojo: #ff6b6b;
+    --color-teal: #14b8a6;
+    --color-purple: #8b5cf6;
+    --color-gris-claro: #ebebeb;
+    --color-negro: #00100b;
+    --color-blanco: #ffffff;
+    --color-fondo: #ffffff;
+    --color-texto: #00100b;
+    --gradiente-principal: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
+    --gradiente-secundario: linear-gradient(135deg, #14b8a6 0%, #8b5cf6 100%);
 }
 
-/* Importar fuentes */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mark+Pro:wght@100;400;500;700;900&display=swap');
+/* Importar fuentes - Nueva Identidad */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
 * {
     margin: 0;
@@ -18,18 +22,18 @@
 }
 
 body {
-    font-family: 'Mark Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 400;
-    background: var(--color-blanco);
+    background: var(--color-fondo);
     height: 100vh;
-    color: var(--color-negro);
+    color: var(--color-texto);
     overflow: hidden;
     margin: 0;
     padding: 0;
     position: relative;
 }
 
-/* Personas decorativas en el fondo */
+/* Personas decorativas en el fondo - Varias personas */
 .personas-fondo {
     position: fixed;
     top: 0;
@@ -40,46 +44,91 @@ body {
     overflow: hidden;
 }
 
-.persona-izquierda,
-.persona-derecha {
+.persona {
     position: absolute;
     bottom: 0;
-    width: 280px;
-    height: 85vh;
+    width: 200px;
+    height: 70vh;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center bottom;
-    filter: grayscale(60%) opacity(0.18) contrast(1.1);
+    filter: grayscale(40%) opacity(0.12) contrast(1.05);
     mix-blend-mode: multiply;
+    animation: float 20s ease-in-out infinite;
 }
 
-.persona-izquierda {
-    left: -60px;
-    background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=900&fit=crop&q=80&auto=format');
+.persona-1 {
+    left: -40px;
+    background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=800&fit=crop&q=80');
+    animation-delay: 0s;
 }
 
-.persona-derecha {
-    right: -60px;
-    background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=900&fit=crop&q=80&auto=format');
+.persona-2 {
+    left: 8%;
+    background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=800&fit=crop&q=80');
+    animation-delay: 3s;
+    height: 65vh;
+}
+
+.persona-3 {
+    left: 18%;
+    background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=800&fit=crop&q=80');
+    animation-delay: 6s;
+    height: 75vh;
+}
+
+.persona-4 {
+    right: 18%;
+    background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=800&fit=crop&q=80');
+    animation-delay: 9s;
+    height: 68vh;
+}
+
+.persona-5 {
+    right: 8%;
+    background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=800&fit=crop&q=80');
+    animation-delay: 12s;
+    height: 72vh;
+}
+
+.persona-6 {
+    right: -40px;
+    background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=800&fit=crop&q=80');
+    animation-delay: 15s;
+    height: 70vh;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@media (max-width: 1400px) {
+    .persona-2,
+    .persona-3,
+    .persona-4,
+    .persona-5 {
+        display: none;
+    }
+    .persona-1,
+    .persona-6 {
+        width: 220px;
+    }
 }
 
 @media (max-width: 1024px) {
-    .persona-izquierda,
-    .persona-derecha {
-        width: 180px;
+    .persona {
+        width: 150px;
         opacity: 0.08;
-    }
-    .persona-izquierda {
-        left: -30px;
-    }
-    .persona-derecha {
-        right: -30px;
     }
 }
 
 @media (max-width: 768px) {
-    .persona-izquierda,
-    .persona-derecha {
+    .persona {
         display: none;
     }
 }
@@ -115,43 +164,46 @@ body {
 }
 
 .intro-titulo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-weight: 400;
+    font-family: 'Lora', serif;
+    font-weight: 700;
     font-size: 3em;
-    color: var(--color-azul-oscuro);
+    background: var(--gradiente-principal);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 20px;
-    letter-spacing: 2px;
-    line-height: 1.1;
+    letter-spacing: 1px;
+    line-height: 1.2;
 }
 
 .intro-subtitulo {
-    font-family: 'Mark Pro', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-weight: 400;
     font-size: 1.1em;
-    color: var(--color-negro);
+    color: var(--color-texto);
     margin-bottom: 30px;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .btn-primario {
-    font-family: 'Bebas Neue', sans-serif;
-    font-weight: 400;
-    background: var(--color-amarillo);
-    color: var(--color-negro);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    background: var(--gradiente-principal);
+    color: white;
     padding: 15px 50px;
-    font-size: 1.5em;
-    letter-spacing: 2px;
-    border: 3px solid var(--color-azul-oscuro);
-    border-radius: 8px;
+    font-size: 1.2em;
+    letter-spacing: 0.5px;
+    border: none;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(34, 32, 34, 0.2);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
 }
 
 .btn-primario:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(34, 32, 34, 0.3);
-    background: #ffd633;
+    box-shadow: 0 6px 30px rgba(139, 92, 246, 0.5);
+    background: linear-gradient(135deg, #a78bfa 0%, #fb7185 100%);
 }
 
 .btn-primario:active {
@@ -186,14 +238,14 @@ body {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    font-family: 'Mark Pro', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-weight: 500;
     font-size: 0.95em;
-    color: var(--color-azul-oscuro);
+    color: var(--color-purple);
 }
 
 .progress-bar {
-    background: var(--color-gris);
+    background: var(--color-gris-claro);
     height: 8px;
     border-radius: 4px;
     overflow: hidden;
@@ -201,7 +253,7 @@ body {
 }
 
 .progress-fill {
-    background: linear-gradient(90deg, var(--color-azul-claro) 0%, var(--color-azul-oscuro) 100%);
+    background: var(--gradiente-principal);
     height: 100%;
     transition: width 0.5s ease;
     border-radius: 4px;
@@ -212,17 +264,17 @@ body {
     text-align: center;
     margin-bottom: 15px;
     padding: 10px;
-    background: var(--color-amarillo);
-    border-radius: 8px;
-    border: 2px solid var(--color-azul-oscuro);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+    border-radius: 12px;
+    border: 2px solid var(--color-purple);
     flex-shrink: 0;
 }
 
 .mensaje-nivel p {
-    font-family: 'Mark Pro', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-weight: 500;
     font-style: italic;
-    color: var(--color-negro);
+    color: var(--color-texto);
     font-size: 1.1em;
     margin: 0;
 }
@@ -244,14 +296,14 @@ body {
 }
 
 .pregunta-texto {
-    font-family: 'Bebas Neue', sans-serif;
-    font-weight: 400;
+    font-family: 'Lora', serif;
+    font-weight: 700;
     font-size: 2em;
-    color: var(--color-azul-oscuro);
+    color: var(--color-texto);
     text-align: center;
     margin-bottom: 20px;
-    letter-spacing: 1px;
-    line-height: 1.2;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
     flex-shrink: 0;
 }
 
@@ -269,8 +321,8 @@ body {
 
 .opcion-card {
     background: white;
-    border: 3px solid var(--color-gris);
-    border-radius: 12px;
+    border: 3px solid var(--color-gris-claro);
+    border-radius: 16px;
     padding: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -280,6 +332,7 @@ body {
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 16, 11, 0.05);
 }
 
 .opcion-card::before {
@@ -289,14 +342,14 @@ body {
     top: 0;
     bottom: 0;
     width: 0;
-    background: var(--color-azul-claro);
+    background: var(--gradiente-principal);
     transition: width 0.3s ease;
 }
 
 .opcion-card:hover {
     transform: translateX(5px);
-    border-color: var(--color-azul-claro);
-    box-shadow: 0 4px 15px rgba(63, 94, 120, 0.2);
+    border-color: var(--color-purple);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
 }
 
 .opcion-card:hover::before {
@@ -304,34 +357,35 @@ body {
 }
 
 .opcion-card.seleccionada {
-    background: var(--color-blanco);
-    border-color: var(--color-azul-oscuro);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(255, 107, 107, 0.05) 100%);
+    border-color: var(--color-purple);
     border-width: 4px;
     transform: scale(1.01);
-    box-shadow: 0 6px 20px rgba(76, 92, 104, 0.3);
+    box-shadow: 0 6px 25px rgba(139, 92, 246, 0.3);
 }
 
 .opcion-card.seleccionada::before {
     width: 5px;
-    background: var(--color-amarillo);
+    background: var(--gradiente-principal);
 }
 
 .opcion-letra {
-    font-family: 'Bebas Neue', sans-serif;
-    font-weight: 400;
-    font-size: 2em;
-    color: var(--color-azul-oscuro);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.8em;
+    color: var(--color-purple);
     min-width: 50px;
     text-align: center;
     background: var(--color-blanco);
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 8px;
-    border: 2px solid var(--color-azul-claro);
+    border: 2px solid var(--color-purple);
 }
 
 .opcion-card.seleccionada .opcion-letra {
-    background: var(--color-amarillo);
-    border-color: var(--color-azul-oscuro);
+    background: var(--gradiente-principal);
+    color: white;
+    border-color: var(--color-purple);
 }
 
 .opcion-contenido {
@@ -339,11 +393,11 @@ body {
 }
 
 .opcion-descripcion {
-    font-family: 'Mark Pro', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-weight: 400;
     font-size: 1em;
     color: var(--color-negro);
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 /* PASO FINAL: EMAIL */
@@ -361,30 +415,34 @@ body {
 }
 
 .email-titulo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-weight: 400;
+    font-family: 'Lora', serif;
+    font-weight: 700;
     font-size: 2.5em;
-    color: var(--color-azul-oscuro);
+    background: var(--gradiente-principal);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 15px;
-    letter-spacing: 2px;
+    letter-spacing: 0.5px;
     line-height: 1.2;
 }
 
 .email-subtitulo {
-    font-family: 'Mark Pro', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-weight: 400;
     font-size: 1em;
-    color: var(--color-negro);
+    color: var(--color-texto);
     margin-bottom: 20px;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .form-email {
     background: white;
     padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(34, 32, 34, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 16, 11, 0.1);
     text-align: left;
+    border: 2px solid var(--color-gris-claro);
 }
 
 .input-group {
@@ -392,30 +450,31 @@ body {
 }
 
 .input-group label {
-    font-family: 'Mark Pro', sans-serif;
-    font-weight: 500;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
     display: block;
     margin-bottom: 10px;
-    color: var(--color-negro);
+    color: var(--color-texto);
     font-size: 1.05em;
 }
 
 .input-group input {
-    font-family: 'Mark Pro', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-weight: 400;
     width: 100%;
     padding: 15px;
-    border: 2px solid var(--color-gris);
-    border-radius: 8px;
+    border: 2px solid var(--color-gris-claro);
+    border-radius: 10px;
     font-size: 1em;
     transition: border-color 0.3s;
-    color: var(--color-negro);
+    color: var(--color-texto);
     background: white;
 }
 
 .input-group input:focus {
     outline: none;
-    border-color: var(--color-azul-claro);
+    border-color: var(--color-purple);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
 .form-email .btn-primario {
@@ -429,20 +488,20 @@ body {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    font-family: 'Mark Pro', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-weight: 500;
     padding: 20px 30px;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
     max-width: 500px;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(34, 32, 34, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 16, 11, 0.3);
 }
 
 .mensaje.success {
-    background: var(--color-amarillo);
-    color: var(--color-negro);
-    border: 2px solid var(--color-azul-oscuro);
+    background: var(--gradiente-secundario);
+    color: white;
+    border: 2px solid var(--color-teal);
 }
 
 .mensaje.error {

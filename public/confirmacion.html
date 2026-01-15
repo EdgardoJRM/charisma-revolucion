@@ -6,7 +6,7 @@
     <title>¡Receta Enviada! - Charisma Revolución</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mark+Pro:wght@100;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
     <style>
         .confirmacion-container {
@@ -14,7 +14,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #4C5C68 0%, #3F5E78 100%);
+            background: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
             padding: 20px;
         }
         
@@ -34,54 +34,58 @@
         }
         
         .confirmacion-titulo {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: 'Lora', serif;
+            font-weight: 700;
             font-size: 3em;
-            color: #4C5C68;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 20px;
-            letter-spacing: 2px;
+            letter-spacing: 0.5px;
         }
         
         .confirmacion-mensaje {
-            font-family: 'Mark Pro', sans-serif;
+            font-family: 'Manrope', sans-serif;
             font-size: 1.2em;
-            color: #222022;
+            color: #00100b;
             line-height: 1.8;
             margin-bottom: 30px;
         }
         
         .confirmacion-destacado {
-            background: #FFC907;
+            background: linear-gradient(135deg, #14b8a6 0%, #8b5cf6 100%);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             margin: 30px 0;
-            border: 2px solid #4C5C68;
+            border: 2px solid #8b5cf6;
         }
         
         .confirmacion-destacado p {
             margin: 0;
-            color: #222022;
-            font-weight: 500;
+            color: white;
+            font-weight: 600;
         }
         
         .btn-volver {
-            background: #3F5E78;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ff6b6b 100%);
             color: white;
             border: none;
             padding: 15px 40px;
-            border-radius: 8px;
-            font-family: 'Mark Pro', sans-serif;
+            border-radius: 12px;
+            font-family: 'Manrope', sans-serif;
             font-size: 1.1em;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
         }
         
         .btn-volver:hover {
-            background: #4C5C68;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 30px rgba(139, 92, 246, 0.5);
         }
     </style>
 </head>
@@ -96,10 +100,10 @@
             <div class="confirmacion-destacado">
                 <p>📧 Revisa tu bandeja de entrada (y spam) para ver tu fórmula personalizada.</p>
             </div>
-            <p class="confirmacion-mensaje" style="font-size: 1em; color: #A5A5A5;">
+            <p class="confirmacion-mensaje" style="font-size: 1em; color: #8e8e93;">
                 En unos minutos recibirás un email con tu fórmula completa de carisma, incluyendo:
             </p>
-            <ul style="text-align: left; display: inline-block; color: #222022; font-family: 'Mark Pro', sans-serif;">
+            <ul style="text-align: left; display: inline-block; color: #00100b; font-family: 'Manrope', sans-serif;">
                 <li>Tu estilo de entretenimiento (Energía)</li>
                 <li>Tu estilo de compasión (Confianza)</li>
                 <li>Tu estilo de autoridad (Acción)</li>
