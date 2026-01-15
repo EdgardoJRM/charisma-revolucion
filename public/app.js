@@ -1,3 +1,6 @@
+// API base (backend separado en API Gateway)
+const API_BASE = 'https://2w5dtqjsbj.execute-api.us-east-1.amazonaws.com/prod';
+
 // Preguntas del examen (sin mencionar "carisma")
 const preguntas = [
     // NIVEL 1 - Energía (12 preguntas)
@@ -272,8 +275,8 @@ async function enviarFormulario(e) {
     try {
         console.log('Enviando datos:', { nombre, email, respuestasCount: respuestas.length });
         
-        // Usar Lambda Function en Amplify
-        const apiUrl = '/api/evaluar';
+        // Backend separado en API Gateway
+        const apiUrl = `${API_BASE}/api/evaluar`;
         
         const response = await fetch(apiUrl, {
             method: 'POST',

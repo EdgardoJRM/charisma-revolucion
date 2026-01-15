@@ -4,6 +4,7 @@ node_modules/
 *.log
 npm-debug.log*
 datos/
+tmp-lambda/
 *.json
 !package.json
 !package-lock.json
