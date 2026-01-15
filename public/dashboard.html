@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Charisma Revolución</title>
+    <title>CRM - Charisma Revolución</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mark+Pro:wght@100;400;500;700;900&display=swap" rel="stylesheet">
@@ -17,33 +17,44 @@
         body {
             font-family: 'Mark Pro', sans-serif;
             background: #f2f2f2;
-            padding: 20px;
             color: #222022;
         }
         
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
+        .header {
+            background: linear-gradient(135deg, #4C5C68 0%, #3F5E78 100%);
+            color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        h1 {
+        .header h1 {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 3em;
-            color: #4C5C68;
-            margin-bottom: 30px;
             letter-spacing: 2px;
+            margin-bottom: 10px;
         }
         
-        .stats-grid {
+        .header .subtitle {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .stats-bar {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         
         .stat-card {
             background: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             border-left: 4px solid #3F5E78;
@@ -51,31 +62,79 @@
         
         .stat-card h3 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5em;
+            font-size: 1.2em;
             color: #4C5C68;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .stat-card .number {
-            font-size: 2.5em;
+            font-size: 2em;
             font-weight: bold;
             color: #FFC907;
         }
         
-        .section {
+        .controls {
             background: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
         }
         
-        .section h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2em;
-            color: #4C5C68;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #A5A5A5;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Mark Pro', sans-serif;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #3F5E78;
+        }
+        
+        .btn {
+            background: #FFC907;
+            color: #222022;
+            padding: 12px 25px;
+            border: 2px solid #4C5C68;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Mark Pro', sans-serif;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #ffd633;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: white;
+            border-color: #A5A5A5;
+        }
+        
+        .btn-secondary:hover {
+            background: #f8f9fa;
+        }
+        
+        .clientes-table {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
         
         table {
@@ -83,43 +142,170 @@
             border-collapse: collapse;
         }
         
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        thead {
+            background: #4C5C68;
+            color: white;
         }
         
         th {
-            background: #4C5C68;
-            color: white;
+            padding: 15px;
+            text-align: left;
             font-weight: 600;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+            font-size: 1.1em;
         }
         
-        tr:hover {
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #f2f2f2;
+        }
+        
+        tbody tr {
+            transition: background 0.2s;
+        }
+        
+        tbody tr:hover {
             background: #f8f9fa;
+            cursor: pointer;
         }
         
-        .btn {
+        .formula-badge {
             background: #FFC907;
             color: #222022;
-            padding: 10px 20px;
-            border: 2px solid #4C5C68;
-            border-radius: 8px;
-            cursor: pointer;
+            padding: 5px 12px;
+            border-radius: 20px;
             font-weight: 600;
-            text-decoration: none;
+            font-size: 0.9em;
             display: inline-block;
-            margin: 10px 5px;
         }
         
-        .btn:hover {
-            background: #ffd633;
+        .resultado-badge {
+            background: #3F5E78;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            display: inline-block;
+            margin: 2px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f2f2f2;
+        }
+        
+        .modal-header h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5em;
+            color: #4C5C68;
+            letter-spacing: 1px;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            color: #A5A5A5;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-btn:hover {
+            color: #222022;
+        }
+        
+        .detail-section {
+            margin-bottom: 30px;
+        }
+        
+        .detail-section h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5em;
+            color: #4C5C68;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .detail-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .detail-item label {
+            font-weight: 600;
+            color: #4C5C68;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .detail-item .value {
+            color: #222022;
+            font-size: 1.1em;
+        }
+        
+        .respuestas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .respuesta-item {
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            border: 2px solid #A5A5A5;
+            font-weight: 600;
         }
         
         .loading {
             text-align: center;
-            padding: 40px;
+            padding: 60px;
             color: #A5A5A5;
+            font-size: 1.2em;
         }
         
         .error {
@@ -130,35 +316,56 @@
             margin: 20px 0;
         }
         
-        .chart-container {
-            margin: 20px 0;
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            color: #A5A5A5;
         }
         
-        .bar {
-            background: #3F5E78;
-            color: white;
-            padding: 8px 15px;
-            margin: 5px 0;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .empty-state h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2em;
+            color: #4C5C68;
+            margin-bottom: 10px;
         }
         
-        .bar-label {
-            font-weight: 600;
-        }
-        
-        .bar-value {
-            font-size: 1.2em;
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="container">
+            <h1>💎 CRM - Charisma Revolución</h1>
+            <p class="subtitle">Gestión completa de clientes y resultados</p>
+        </div>
+    </div>
+    
     <div class="container">
-        <h1>📊 Dashboard - Charisma Revolución</h1>
-        
-        <div class="stats-grid" id="stats-grid">
+        <div class="stats-bar" id="stats-bar">
             <div class="stat-card">
                 <h3>Total Clientes</h3>
                 <div class="number" id="total-clientes">-</div>
@@ -171,38 +378,54 @@
                 <h3>Esta Semana</h3>
                 <div class="number" id="semana">-</div>
             </div>
+            <div class="stat-card">
+                <h3>Este Mes</h3>
+                <div class="number" id="mes">-</div>
+            </div>
         </div>
         
-        <div class="section">
-            <h2>📈 Estadísticas de Fórmulas</h2>
-            <div id="formulas-chart" class="chart-container"></div>
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="🔍 Buscar por nombre, email o fórmula...">
+            </div>
+            <button class="btn" onclick="exportarDatos()">📥 Exportar CSV</button>
+            <button class="btn btn-secondary" onclick="cargarDatos()">🔄 Actualizar</button>
         </div>
         
-        <div class="section">
-            <h2>👥 Lista de Clientes</h2>
+        <div class="clientes-table">
             <div id="clientes-container">
                 <div class="loading">Cargando clientes...</div>
             </div>
         </div>
     </div>
     
+    <!-- Modal de detalle -->
+    <div class="modal" id="modal-detalle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-nombre">Detalle del Cliente</h2>
+                <button class="close-btn" onclick="cerrarModal()">×</button>
+            </div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+    
     <script>
+        let todosLosClientes = [];
+        
         async function cargarDatos() {
             try {
-                // Cargar estadísticas
-                const statsRes = await fetch('/api/estadisticas');
-                const statsData = await statsRes.json();
+                document.getElementById('clientes-container').innerHTML = '<div class="loading">Cargando clientes...</div>';
                 
-                if (statsData.success) {
-                    mostrarEstadisticas(statsData.estadisticas);
-                }
+                const res = await fetch('/api/clientes');
+                const data = await res.json();
                 
-                // Cargar clientes
-                const clientesRes = await fetch('/api/clientes');
-                const clientesData = await clientesRes.json();
-                
-                if (clientesData.success) {
-                    mostrarClientes(clientesData.clientes);
+                if (data.success) {
+                    todosLosClientes = data.clientes || [];
+                    actualizarEstadisticas(todosLosClientes);
+                    mostrarClientes(todosLosClientes);
+                } else {
+                    throw new Error(data.error || 'Error al cargar datos');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -211,45 +434,43 @@
             }
         }
         
-        function mostrarEstadisticas(stats) {
-            document.getElementById('total-clientes').textContent = stats.totalClientes;
-            
-            // Calcular hoy y esta semana
+        function actualizarEstadisticas(clientes) {
             const hoy = new Date().toISOString().split('T')[0];
             const hace7Dias = new Date();
             hace7Dias.setDate(hace7Dias.getDate() - 7);
+            const hace30Dias = new Date();
+            hace30Dias.setDate(hace30Dias.getDate() - 30);
             
-            const hoyCount = stats.porFecha[hoy] || 0;
+            let hoyCount = 0;
             let semanaCount = 0;
-            for (let i = 0; i < 7; i++) {
-                const fecha = new Date();
-                fecha.setDate(fecha.getDate() - i);
-                const fechaStr = fecha.toISOString().split('T')[0];
-                semanaCount += stats.porFecha[fechaStr] || 0;
-            }
+            let mesCount = 0;
             
+            clientes.forEach(cliente => {
+                if (!cliente.fecha) return;
+                const fecha = cliente.fecha.split('T')[0];
+                const fechaObj = new Date(fecha);
+                
+                if (fecha === hoy) hoyCount++;
+                if (fechaObj >= hace7Dias) semanaCount++;
+                if (fechaObj >= hace30Dias) mesCount++;
+            });
+            
+            document.getElementById('total-clientes').textContent = clientes.length;
             document.getElementById('hoy').textContent = hoyCount;
             document.getElementById('semana').textContent = semanaCount;
-            
-            // Mostrar gráfico de fórmulas
-            const formulasDiv = document.getElementById('formulas-chart');
-            const formulas = Object.entries(stats.formulas)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 10);
-            
-            formulasDiv.innerHTML = formulas.map(([formula, count]) => `
-                <div class="bar">
-                    <span class="bar-label">${formula}</span>
-                    <span class="bar-value">${count}</span>
-                </div>
-            `).join('');
+            document.getElementById('mes').textContent = mesCount;
         }
         
         function mostrarClientes(clientes) {
             const container = document.getElementById('clientes-container');
             
             if (clientes.length === 0) {
-                container.innerHTML = '<p>No hay clientes registrados aún.</p>';
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No hay clientes registrados</h3>
+                        <p>Aún no hay clientes que hayan completado el examen.</p>
+                    </div>
+                `;
                 return;
             }
             
@@ -267,33 +488,219 @@
                             <th>Nivel 1</th>
                             <th>Nivel 2</th>
                             <th>Nivel 3</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        ${clientes.map(cliente => `
-                            <tr>
-                                <td>${new Date(cliente.fecha).toLocaleDateString('es-ES')}</td>
-                                <td>${cliente.nombre}</td>
+                        ${clientes.map((cliente, index) => `
+                            <tr onclick="verDetalle('${cliente.id}')">
+                                <td>${formatearFecha(cliente.fecha)}</td>
+                                <td><strong>${cliente.nombre}</strong></td>
                                 <td>${cliente.email}</td>
-                                <td><strong>${cliente.formulaFinal}</strong></td>
-                                <td>${cliente.resultados?.nivel1?.resultado || '-'}</td>
-                                <td>${cliente.resultados?.nivel2?.resultado || '-'}</td>
-                                <td>${cliente.resultados?.nivel3?.resultado || '-'}</td>
+                                <td><span class="formula-badge">${cliente.formulaFinal || '-'}</span></td>
+                                <td><span class="resultado-badge">${cliente.resultados?.nivel1?.resultado || '-'}</span></td>
+                                <td><span class="resultado-badge">${cliente.resultados?.nivel2?.resultado || '-'}</span></td>
+                                <td><span class="resultado-badge">${cliente.resultados?.nivel3?.resultado || '-'}</span></td>
+                                <td>
+                                    <button class="btn" style="padding: 6px 12px; font-size: 0.85em;" onclick="event.stopPropagation(); verDetalle('${cliente.id}')">
+                                        Ver
+                                    </button>
+                                </td>
                             </tr>
                         `).join('')}
                     </tbody>
                 </table>
-                <br>
-                <a href="/api/clientes" class="btn" download="clientes.json">📥 Descargar JSON</a>
             `;
         }
+        
+        function verDetalle(idCliente) {
+            const cliente = todosLosClientes.find(c => c.id === idCliente);
+            if (!cliente) return;
+            
+            document.getElementById('modal-nombre').textContent = cliente.nombre;
+            
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `
+                <div class="detail-section">
+                    <h3>📋 Información Personal</h3>
+                    <div class="detail-item">
+                        <label>Nombre Completo</label>
+                        <div class="value">${cliente.nombre}</div>
+                    </div>
+                    <div class="detail-item">
+                        <label>Email</label>
+                        <div class="value">${cliente.email}</div>
+                    </div>
+                    <div class="detail-item">
+                        <label>Fecha de Evaluación</label>
+                        <div class="value">${formatearFechaCompleta(cliente.fecha)}</div>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>✨ Fórmula de Carisma</h3>
+                    <div class="detail-item">
+                        <label>Fórmula Final</label>
+                        <div class="value">
+                            <span class="formula-badge" style="font-size: 1.2em; padding: 10px 20px;">
+                                ${cliente.formulaFinal}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>📊 Resultados por Nivel</h3>
+                    <div class="detail-item">
+                        <label>Nivel 1 - Carisma Energético</label>
+                        <div class="value">
+                            <span class="resultado-badge" style="font-size: 1em; padding: 8px 15px;">
+                                ${cliente.resultados?.nivel1?.resultado || '-'}
+                            </span>
+                            <span style="color: #A5A5A5; margin-left: 10px;">
+                                (Dominante: ${cliente.resultados?.nivel1?.dominante || '-'})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <label>Nivel 2 - Carisma de Compasión</label>
+                        <div class="value">
+                            <span class="resultado-badge" style="font-size: 1em; padding: 8px 15px;">
+                                ${cliente.resultados?.nivel2?.resultado || '-'}
+                            </span>
+                            <span style="color: #A5A5A5; margin-left: 10px;">
+                                (Dominante: ${cliente.resultados?.nivel2?.dominante || '-'})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <label>Nivel 3 - Carisma de Autoridad</label>
+                        <div class="value">
+                            <span class="resultado-badge" style="font-size: 1em; padding: 8px 15px;">
+                                ${cliente.resultados?.nivel3?.resultado || '-'}
+                            </span>
+                            <span style="color: #A5A5A5; margin-left: 10px;">
+                                (Dominante: ${cliente.resultados?.nivel3?.dominante || '-'})
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>📝 Respuestas Completas (36 preguntas)</h3>
+                    <div class="detail-item">
+                        <label>Respuestas</label>
+                        <div class="respuestas-grid">
+                            ${cliente.respuestas ? cliente.respuestas.map((r, i) => `
+                                <div class="respuesta-item">
+                                    <div style="font-size: 0.7em; color: #A5A5A5;">${i + 1}</div>
+                                    <div style="font-weight: bold; color: #3F5E78;">${r}</div>
+                                </div>
+                            `).join('') : '<p>No hay respuestas disponibles</p>'}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('modal-detalle').classList.add('active');
+        }
+        
+        function cerrarModal() {
+            document.getElementById('modal-detalle').classList.remove('active');
+        }
+        
+        function formatearFecha(fechaISO) {
+            if (!fechaISO) return '-';
+            const fecha = new Date(fechaISO);
+            return fecha.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+        
+        function formatearFechaCompleta(fechaISO) {
+            if (!fechaISO) return '-';
+            const fecha = new Date(fechaISO);
+            return fecha.toLocaleString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+        
+        function exportarDatos() {
+            if (todosLosClientes.length === 0) {
+                alert('No hay datos para exportar');
+                return;
+            }
+            
+            // Crear CSV
+            const headers = ['Fecha', 'Nombre', 'Email', 'Fórmula', 'Nivel 1', 'Nivel 2', 'Nivel 3', 'Respuestas'];
+            const rows = todosLosClientes.map(cliente => [
+                formatearFecha(cliente.fecha),
+                cliente.nombre,
+                cliente.email,
+                cliente.formulaFinal || '',
+                cliente.resultados?.nivel1?.resultado || '',
+                cliente.resultados?.nivel2?.resultado || '',
+                cliente.resultados?.nivel3?.resultado || '',
+                cliente.respuestas ? cliente.respuestas.join(',') : ''
+            ]);
+            
+            const csv = [
+                headers.join(','),
+                ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+            ].join('\n');
+            
+            // Descargar
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', `clientes-charisma-${new Date().toISOString().split('T')[0]}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Búsqueda en tiempo real
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            const termino = e.target.value.toLowerCase();
+            if (termino === '') {
+                mostrarClientes(todosLosClientes);
+                return;
+            }
+            
+            const filtrados = todosLosClientes.filter(cliente => {
+                return (
+                    cliente.nombre?.toLowerCase().includes(termino) ||
+                    cliente.email?.toLowerCase().includes(termino) ||
+                    cliente.formulaFinal?.toLowerCase().includes(termino) ||
+                    cliente.resultados?.nivel1?.resultado?.toLowerCase().includes(termino) ||
+                    cliente.resultados?.nivel2?.resultado?.toLowerCase().includes(termino) ||
+                    cliente.resultados?.nivel3?.resultado?.toLowerCase().includes(termino)
+                );
+            });
+            
+            mostrarClientes(filtrados);
+        });
+        
+        // Cerrar modal al hacer click fuera
+        document.getElementById('modal-detalle').addEventListener('click', (e) => {
+            if (e.target.id === 'modal-detalle') {
+                cerrarModal();
+            }
+        });
         
         // Cargar datos al iniciar
         cargarDatos();
         
-        // Actualizar cada 30 segundos
-        setInterval(cargarDatos, 30000);
+        // Actualizar cada 60 segundos
+        setInterval(cargarDatos, 60000);
     </script>
 </body>
 </html>
-
