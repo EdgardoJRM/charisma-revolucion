@@ -602,6 +602,16 @@ async function enviarFormulario(e) {
         }
         
         if (response.ok) {
+            // Track Facebook Pixel: Formulario completado
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'CompleteRegistration', {
+                    content_name: 'Fórmula de Carisma',
+                    status: true
+                });
+                fbq('track', 'Lead', {
+                    content_name: 'Diagnóstico de Carisma Completado'
+                });
+            }
             // Redirigir a página de confirmación
             window.location.href = '/confirmacion.html';
         } else {
@@ -627,6 +637,13 @@ async function enviarFormulario(e) {
 document.addEventListener('DOMContentLoaded', () => {
     // Botón comenzar
     document.getElementById('btn-comenzar').addEventListener('click', () => {
+        // Track Facebook Pixel: Inicio del diagnóstico
+        if (typeof fbq !== 'undefined') {
+            fbq('track', 'InitiateCheckout', {
+                content_name: 'Diagnóstico de Carisma',
+                content_category: 'Test'
+            });
+        }
         cambiarPaso('paso-intro', 'paso-preguntas');
         mostrarPregunta();
     });
