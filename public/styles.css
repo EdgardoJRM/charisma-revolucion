@@ -25,12 +25,15 @@ body {
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 400;
     background: var(--color-fondo);
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     color: var(--color-texto);
-    overflow: hidden;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
     position: relative;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Personas decorativas en el fondo - Varias personas */
@@ -155,11 +158,13 @@ body {
 /* Sistema de pasos */
 .paso {
     display: none;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     padding: 20px;
     overflow: visible;
     position: relative;
     z-index: 1;
+    width: 100%;
 }
 
 .paso.activo {
@@ -168,8 +173,10 @@ body {
     justify-content: center;
     overflow-y: auto;
     overflow-x: hidden;
+    padding: 10px;
     padding-top: 20px;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
 }
 
 /* PASO 0: INTRO */
@@ -181,10 +188,11 @@ body {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    min-height: 100%;
+    min-height: auto;
     overflow: hidden;
+    padding-top: 60px;
 }
 
 .logo-intro {
@@ -468,13 +476,14 @@ body {
     padding: 40px 30px;
     margin: 0 auto;
     text-align: center;
-    min-height: 100%;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-top: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .email-titulo {
@@ -528,16 +537,26 @@ body {
     padding: 15px;
     border: 2px solid var(--color-gris-claro);
     border-radius: 10px;
-    font-size: 1em;
+    font-size: 16px;
     transition: border-color 0.3s;
     color: var(--color-texto);
     background: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .input-group input:focus {
     outline: none;
     border-color: var(--color-purple);
     box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+/* Prevenir zoom en iOS al enfocar inputs */
+@media screen and (max-width: 768px) {
+    .input-group input {
+        font-size: 16px !important;
+    }
 }
 
 .form-email .btn-primario {
@@ -616,12 +635,13 @@ body {
     }
 
     .pregunta-wrapper {
-        padding: 15px;
-        padding-top: 20px;
+        padding: 10px 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
         min-height: auto;
-        max-height: 100vh;
         justify-content: flex-start;
-        overflow: hidden;
+        overflow: visible;
+        width: 100%;
     }
 
     .progress-container {
